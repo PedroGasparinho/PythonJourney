@@ -1,0 +1,339 @@
+\documentclass{beamer}
+
+\usepackage{pgfgantt}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{bold-extra}
+\usepackage{gospel}
+\usepackage{booktabs}
+
+%\usetheme{Madrid}
+
+\usetheme{Pittsburgh}
+\usecolortheme{beaver}
+
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+\item[]}{\end{list}}
+
+
+\newcommand{\quotemarks}[1]{``#1''}
+\newcommand{\bb}{\bigskip\bigskip}
+
+\DeclareCaptionFormat{listing}{\hfill#3}
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{theblue}{rgb}{0,0,0.797}
+\let\emph\alert
+
+\AtBeginSection[]
+{
+    \begin{frame}[plain]{}
+        \begin{center}
+            {\large\emph{\insertsection}}\\
+            ~\hfill\hrulefill\hfill~
+        \end{center}
+    \end{frame}
+    \addtocounter{framenumber}{-1}
+}
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        \usebeamerfont{author in head/foot}ICE-E %\insertsection
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertauthor
+    \end{beamercolorbox}%
+    %\begin{beamercolorbox}[wd=.125\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    %    \usebeamerfont{date in head/foot}ICE-E
+    %\end{beamercolorbox}% 
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+        \insertframenumber{} / \inserttotalframenumber\hspace*{4ex} 
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+\makeatother
+
+%Information to be included in the title page:
+\title{Introdução ao Python}
+\subtitle{Aula de revisões}
+\author{Pedro Gasparinho}
+%\institute{NOVA School of Science and Technology}
+\date{\today}
+
+%\titlegraphic{
+%\includegraphics[width=6cm]{../Images/en_di_rgb_positivo_h.png}
+%}
+
+%\usepackage[
+%    backend=biber,
+%    giveninits=true,
+%    backref=true,
+%    backrefstyle=three,
+%    urldate=iso, 
+%    date=iso,
+%    seconds=true
+%]{biblatex}
+%\addbibresource{bibliography.bib}
+
+\begin{document}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,
+  font={sf,it},labelsep=space,labelfont=bf,belowskip=-1pt}
+\captionsetup{justification=centering, labelformat=simple}
+
+\frame[plain]{\titlepage}
+\addtocounter{framenumber}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Introduction %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction}
+%\begin{frame}
+%    \frametitle{Motivation}
+%    \onslide<1->{\textit{``Everybody should learn to program a computer, because it teaches you how to think.''} \\
+%    \hfill {\color{theblue}{Steve Jobs, co-founder of Apple}}
+%    \bb}
+%    \onslide<2->{\textit{``Artificial intelligence is the science of making machines do things that would require intelligence if done by humans.''} \\
+%    \hfill {\color{theblue}{John McCarthy, computer scientist}}
+%    \bb}
+    %\onslide<3->{\textit{``It's going to be interesting to see how society deals with artificial intelligence, but it will definitely be cool.''} \\
+    %\hfill {\color{theblue}{Jeff Hawkins, computer scientist}}
+    %\bb}
+%    \onslide<3->{\textit{``If debugging is the process of removing software bugs, then programming must be the process of putting them in.''} \\
+%    \hfill {\color{theblue}{Edsger Dijkstra, computer scientist}}
+%    \bb}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Examples %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[containsverbatim]
+    \frametitle{Primeiro Programa}
+    \begin{pythonlst}
+        print('Hello World!')
+    \end{pythonlst}
+    \bb
+    \begin{itemize}
+        \item \textit{print} - Função
+        \item \textit{'Hello World!'} - Valor do tipo string
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conjuntos Numéricos}
+    \begin{minipage}[c]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Images/RealSet_w1000.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.48\linewidth}
+        \begin{itemize}
+            \item Existe a necessidade de agrupar números com dadas
+                características em conjuntos diferentes.
+            \item Estes conjuntos são normalmente construídos de forma 
+                incremental.
+            \item No entanto, quando necessário é possível restringir o conjunto 
+                ou subconjunto a usar.
+        \end{itemize}
+
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tipos de dados em Python}
+    \begin{itemize}
+        \item Similarmente à Matemática, em Python e noutras linguagens de
+            Programação, existem conjuntos de valores, denominados tipos de dados.
+        \item No entanto, estes não se limitam apenas a números, existem também 
+            formas de representar texto, verdadeiros, falsos, entre outros.
+        \item Um valor pode ter diferentes representações, mas cada representação
+            apenas está associada a um tipo de dados. Por exemplo, 1 é um valor
+            inteiro, enquanto 1.0 é considerado real.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tipos de dados em Python}
+    \begin{itemize}
+        \item Números Inteiros (Integers)
+            \begin{itemize}
+                \item Denominado \textit{int}
+                \item Exemplos: \textit{1}, \textit{-4}, \textit{0}
+            \end{itemize}
+        \item Números Reais (Floats)
+            \begin{itemize}
+                \item Denominado \textit{float}
+                \item Exemplos: \textit{1.0}, \textit{-6.2}, \textit{3.1415926}
+            \end{itemize}
+        \item Valores lógicos (Booleans)
+        \begin{itemize}
+            \item Denominado \textit{bool}
+            \item Exemplos: \textit{True}, \textit{False}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tipos de dados em Python}
+    \begin{itemize}
+        \item Texto (Strings)
+        \begin{itemize}
+            \item Denominado \textit{str}
+            \item Exemplos: \textit{'1'}, \textit{"Hello, world"}, \textit{"""Olá"""}
+        \end{itemize}
+    \item Listas
+        \begin{itemize}
+            \item Denominado \textit{list}
+            \item Exemplos: \textit{[1, 2, 3]}, \textit{[]}, \textit{["Olá", "Olé"]}, \textit{["Olá", 1, ["ok"], true]}
+        \end{itemize}
+    \item Entre outros...
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algumas notas sobre Floats}
+    \begin{itemize}
+        \item Não é possível representar fidedignamente todos os números 
+        reais, como por exemplo, os números com dízimas infinitas, já que os 
+        computadores têm espaço de armazenamento finito.
+        \item Outro exemplo clássico é somar \textit{0.1} com \textit{0.2}, que 
+        resulta em \textit{0.30000000000000004}.
+        \item Isto deve-se à norma IEE 754, usada para representar números reais,
+        mas que não será discutida nestes materiais.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algumas notas sobre Strings}
+    \begin{itemize}
+        \item Devem começar com um apóstrofe, um par de aspas ou 
+        três pares de aspas e terminar com o mesmo caracter.
+        \item Existem diferenças entre as 3 possibilidades, mas apenas serão 
+            discutidas mais tarde.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algumas notas sobre Listas}
+    \begin{itemize}
+        \item Podem conter valores de diferentes tipos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Funções}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Examples %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{TO REMOVE}
+\begin{frame}
+    \frametitle{TODO: Funções}
+    \begin{itemize}
+        \item Pegar num enunciado simples e que peça valores concretos
+        \item Ex: Qual é fibonacci de 4.
+        \item Fazer uma implementação a pensar só no 4
+        \item Depois questionar se quisesse fazer o fibonacci de 8
+        \item Apresentar uma função genérica
+        \item Questionar sobre o que pode estar a faltar
+        \item Introduzir ajudas de tipo e comentários
+        \item Se calhar meter um exemplo super complexo sem comentários e ajudas de tipo
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[containsverbatim]
+    \frametitle{Primeiro Programa}
+    \begin{pythonlst}
+x = "hello" #hello
+y = f"world {x}" #hello {world}
+## Alice is great
+name = "Alice"
+greeting = f"Hello {def name.upper() while bool}!"
+    \end{pythonlst}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \frametitle{Primeiro Programa}
+    \begin{pythonlst}
+def fibonacci(n):
+        return 1
+
+def fibonacci(n: int) -> int:
+        return 1
+
+x = lambda a : a + 10
+    \end{pythonlst}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \frametitle{Primeiro Programa}
+\begin{pythonlst}
+    import os
+    import sys
+    
+    def fibonacci(n):
+        """Generate Fibonacci sequence up to n."""
+        a, b = 0, 1
+        while a < n:
+            yield a
+            a, b = b, a + b
+    
+    class SampleClass:
+        """A sample class demonstrating Python keywords."""
+        
+        def __init__(self, name):
+            self.name = name
+        
+        def greet(self):
+            return f"Hello, {self.name}!"
+\end{pythonlst}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \frametitle{Primeiro Programa}
+\begin{pythonlst}
+    if __name__ == "__main__":
+        try:
+            num = int(input("Enter a number: "))
+            
+            if num < 0:
+                raise ValueError("Number must be non-negative")
+            
+            for val in fibonacci(num):
+                print(val, end=" ")
+            
+            obj = SampleClass("Python User")
+            
+            with open("sample.txt", "w") as file:
+                file.write("This is a sample file.")
+                
+            print("File written successfully.")
+        except ValueError as e:
+            print(f"Error: {e}")
+        finally:
+            print("Execution completed.")
+\end{pythonlst}
+\end{frame}
+
+
+
+\end{document}
