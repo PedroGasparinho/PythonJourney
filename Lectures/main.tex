@@ -222,10 +222,13 @@
 \begin{frame}
     \frametitle{Algumas notas sobre Strings}
     \begin{itemize}
-        \item Devem começar com um apóstrofe, um par de aspas ou 
-        três pares de aspas e terminar com o mesmo caracter.
-        \item Existem diferenças entre as 3 possibilidades, mas apenas serão 
-            discutidas mais tarde.
+        \item São obrigatoriamente delimitadas ou por apóstrofes (\textit{'...'}) 
+            ou por aspas (\textit{"..."}).
+        \item Escolher as aspas como delimitador permite utilizar os apóstrofes
+            dentro do conteúdo da string e vice-versa.
+        \item Para além disso, é possível usar o mesmo delimitador 3 vezes 
+            seguidas para permitir que a string tenha múltiplas linhas. O que
+            geralmente é utilizado para comentários. 
     \end{itemize}
 \end{frame}
 
@@ -237,7 +240,91 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Spyder IDE}
+    \begin{itemize}
+        \item Mostrar a diferença entre o ficheiro e a consola
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Expressões aritméticas}
+    \begin{itemize}
+        \item OK
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \frametitle{Exercício}
+    Escreva um programa em Python que calcule a distância eucliadiana entre 
+    os pontos (3, 4) e (7, 1). A fórmula para dois pontos ($x_1$, $y_1$)
+    e ($x_2$, $y_2$) é:
+    \vspace{2mm}
+    \[ d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \]
+    \vspace{4mm}
+    Talvez a solução mais intuitiva seja:
+    \begin{pythonlst}
+        import math
+
+        print(math.sqrt((3 - 7)**2 + (4 - 1)**2))
+    \end{pythonlst}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Repetição de código}
+    E se nos pedirem para calcular a distância entre outros dois pontos?
+    Simples, fazer copy paste!\\
+    \vspace{4mm}
+    No entanto, isto introduz alguns problemas:
+    \begin{itemize}
+        \item A fórmula da distância é relativamente simples, mas copiar pedaços 
+            de código mais complexos e com múltiplas linhas torna o código 
+            difícil de ler.
+        \item Se detetarmos um erro numa fórmula seria necessário substituir em 
+            vários locais, o que não é desejável, e inclusivamente ficar a faltar
+            em algum sítio.
+    \end{itemize}
+    Qual será a melhor solução?
+\end{frame}
+
+\begin{frame}[containsverbatim]
     \frametitle{Funções}
+    Uma solução mais adequada seria:
+    \begin{pythonlst}
+        import math
+
+        def dist(x1, y1, x2, y2):
+            return math.sqrt((3 - 7)**2 + (4 - 1)**2)
+        
+        print(dist(3, 4, 7, 1))
+        print(dist(0, 0, 0, 1))
+    \end{pythonlst}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+    \frametitle{Funções}
+    No entanto, a melhor solução seria:
+    \begin{pythonlst}
+        import math
+
+        def dist(x1, y1, x2, y2: float) -> float:
+            """ Calcula a distancia eucliadiana entre dois pontos
+                x1, y1 - Coordenadas do ponto 1
+                x2, y2 - Coordenadas do ponto 2
+                Retorna a distancia como numero real """
+            return math.sqrt((3 - 7)**2 + (4 - 1)**2)
+        
+        print(dist(3, 4, 7, 1))
+        print(dist(0, 0, 0, 1))
+    \end{pythonlst}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Funções}
+    \begin{itemize}
+        \item Ordem dos parametros importa
+        \item Os nomes não interessam, mas por boa prática deve ser algo alusivo ao comportamento esperado
+        \item Para quê funções? Exemplo do botão na calculadora (i.e. não queremos um botão que calcule especificamente ln(1+5/2))
+    \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
