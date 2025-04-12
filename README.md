@@ -15,7 +15,7 @@ An introductory course for python
 - Ver se é número primo?
 - Inverter uma string/lista
 - Remover valores duplicados
-- Soma de dígitos de um número
+- Soma de dígitos de um número / digital root
 - Contar ocurrências de um caracter numa string
 - Factorial
 - Contar palavras numa string
@@ -23,4 +23,11 @@ An introductory course for python
 - Contar vogais e consoantes
 - Elementos comuns entre duas listas
 - Remover elementos de uma lista
+- Mover lista x casas para a frente/trás
+- Verificar se a lista está ordenada
+- Completar espaços no binary search (inicialização/atualização lower, upper e mid)
 
+
+Progressões aritméticas e geométricas
+Programa interativo: conta bancária
+Sistema internacional de unidades

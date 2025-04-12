@@ -327,6 +327,24 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}[containsverbatim]
+    \frametitle{Condições}
+    
+    \begin{pythonlst}
+        import math
+
+        def dist(x1, y1, x2, y2: float) -> float:
+            """ Calcula a distancia eucliadiana entre dois pontos
+                x1, y1 - Coordenadas do ponto 1
+                x2, y2 - Coordenadas do ponto 2
+                Retorna a distancia como numero real """
+            return math.sqrt((3 - 7)**2 + (4 - 1)**2)
+        
+        print(dist(3, 4, 7, 1))
+        print(dist(0, 0, 0, 1))
+    \end{pythonlst}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Examples %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
