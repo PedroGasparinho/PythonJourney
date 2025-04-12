@@ -10,11 +10,20 @@
 \usepackage{tikz}     % optional, for drawings
 \usepackage{graphicx} % optional, for images
 
-\usepackage{ocgx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{bold-extra}
 \usepackage[shortlabels]{enumitem}
 \usepackage{tabularx}
+\usepackage{gospel}
+\usepackage{caption}
 
 \setlist[enumerate]{font=\bfseries}
+\DeclareCaptionFormat{listing}{\hfill#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,
+  font={sf,it},labelsep=space,labelfont=bf,belowskip=-1pt}
+\captionsetup{justification=centering, labelformat=simple}
 
 % Page dimensions and margins
 \geometry{top=1in, bottom=1in, left=1in, right=1in}
@@ -89,6 +98,8 @@ index $0$ to $n-1$. The sum of the elements in sequence $a$, can be expressed as
   \item Develop a function that receives a list of floats and calculates the
     sum of its elements.
   \item Develop a test function for the List Summation problem.
+  \item \textbf{Challenge:} Repeat the previous subproblems, but only sum the 
+    even numbers in the list.
 \end{enumerate}
 
 \subsection*{Exercise 4 - Vowel Count}
@@ -172,7 +183,7 @@ reaches the $n^{th}$ number, using a loop.
 \subsection*{Exercise 8 - Maximum Element}
 \begin{enumerate}[a)]
   \item Develop a function that calculates the maximum element of a list of 
-    floats. \\ \textbf{Suggestion:} the resolve variable can be initialized as 
+    floats. \\ \textbf{Suggestion:} The resolve variable can be initialized as 
     $float(inf)$
   \item Develop a test function for the Maximum problem.
   \item Repeat the previous subproblems for the minimum element.
@@ -200,8 +211,126 @@ and one. The first five prime numbers are: $2, 3, 5, 7, 11$.
 \begin{enumerate}[a)]
   \item Develop a function that removes the elements that are duplicated in a 
   list. \textbf{Suggestion:} The result should be a new list.
-  \item Develop a test function for the Inversion problem.
+  \item Develop a test function for the Remove Duplicates problem.
 \end{enumerate}
 
+\subsection*{Exercise 12 - Digit Sum}
+\begin{enumerate}[a)]
+  \item Develop a function that calculates the sum of all digits of an integer. 
+  \textbf{Suggestion:} Convert the integer to a string and only consider 
+    non-negative values.
+  \item Develop a test function for the Digit Sum problem.
+\end{enumerate}
+
+\subsection*{Exercise 13 - Digital Root}
+The digital root of a number is the repeated sum of digits until the result only
+contains a single digit. For instance:
+\[\text{Digit sum of } 9045 = 18 \text{, because } 9+0+4+5 = 18\]
+\[\text{Digital root of } 9045 = 9 \text{, because } 9+0+4+5 = 18 \text{ and } 
+1+8 = 9 \]
+\begin{enumerate}[a)]
+  \item Develop a function that calculates the digital root of an integer. 
+  \textbf{Suggestion:} Use the function from the previous exercise until the 
+    stopping condition is met.
+  \item Develop a test function for the Digit Root problem.
+\end{enumerate}
+
+\subsection*{Exercise 14 - Count Character}
+\begin{enumerate}[a)]
+  \item Develop a function that calculates the number of times a character
+    occurs in a string. \textbf{Warning:} Remember that python does not support 
+    characters directly like other languages, as such, one must use a string and 
+    guarantee that it has length of one.
+  \item Develop a test function for the Count Character problem.
+\end{enumerate}
+
+\subsection*{Exercise 15 - Factorial}
+Similar to the Fibonacci sequence, there are various ways to calculate the
+factorial of a number, and once more, the objective will be to use its iterative
+version. However, in this case, one may iterate over the loop forward or 
+backwards.
+\begin{enumerate}[a)]
+  \item Develop a function that calculates the factorial of a number $n$ by 
+    looping forward, i.e., from $1$ to $n$.
+  \item Develop a function that calculates the factorial of a number $n$ by 
+    looping backwards, i.e., from $n$ to $1$.
+  \item Develop a test function for the Factorial problem.
+\end{enumerate}
+
+\subsection*{Exercise 16 - Common Elements}
+\begin{enumerate}[a)]
+  \item Develop a function that calculates the number of common elements at the 
+    \textbf{same position} of two lists. \textbf{Warning:} the two lists may be 
+    of different sizes, as such, beware of indexes out of bound.
+  \item Develop a test function for the Common Elements problem.
+\end{enumerate}
+
+\subsection*{Exercise 17 - Remove Element}
+\begin{enumerate}[a)]
+  \item Develop a function that removes a given element from a list. 
+    \textbf{Warning:} The element may be repeated multiple times in the list.
+    \textbf{Suggestion:} The result should be in a new list.
+  \item Develop a test function for the Common Elements problem.
+\end{enumerate}
+
+\subsection*{Exercise 18 - Linear Search}
+Linear Search is the most intuitive and simple searching algorithm. It consists
+in going from position to position in a list and checking whether the element
+stored there is the desired element. The algorithm returns a boolean to indicate
+whether it was found.
+\begin{enumerate}[a)]
+  \item Develop a function that implements linear search.
+  \item Develop a test function for the Linear Search problem.
+\end{enumerate}
+
+\subsection*{Exercise 19 - Sorted}
+\begin{enumerate}[a)]
+  \item Develop a function to check if a list is sorted \textbf{ascendingly}.
+  \item Develop a test function for the Sorted problem.
+\end{enumerate}
+
+\subsection*{Exercise 20 - Binary Search}
+Imagine that we have a sorted list, and we are looking for a specific value,
+would linear search be efficient? Possibly not, we might be looking for large
+value present at the end of a very large list. A common and efficient solution 
+used in various fields of Engineering is to divide the domain in half, and if
+possible exclude one of the two halves. Binary Search does exactly that, since
+the list must be sorted beforehand, by checking the value at the middle point,
+we can restrict the domain in half in case the middle point is not the value
+we are looking for. This process can be repeated until the domain is valid.
+For clarity, see the following Images:
+
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{../Images/BinarySearchFound.png}
+  \centering
+\end{figure}
+\hfill
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{../Images/BinarySearchNotFound.png}
+  \centering
+\end{figure}
+\vspace{1cm}
+\begin{enumerate}[a)]
+  \item Complete the following function:
+    \begin{pythonlst}
+def bin_search(l:list[int], n: int) -> bool:
+  assert is_sorted(l)
+
+  lower = #TODO
+  upper = #TODO
+
+  while lower <= upper:
+    mid = #TODO
+    if l[mid] == n:
+      return #TODO
+    elif l[mid] > n:
+      upper = mid - 1
+    else:
+      lower = mid + 1
+
+  return #TODO
+    \end{pythonlst}
+  \item Develop a test function for the Binary Search problem.
+\end{enumerate}
 
 \end{document}

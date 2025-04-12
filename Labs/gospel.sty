@@ -1,0 +1,56 @@
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\RequirePackage{bold-extra}
+
+%\definecolor{thegraygray}{rgb}{0.5,0.5,0.5}
+\definecolor{crimson}{RGB}{215, 38, 56}
+\definecolor{steelblue}{RGB}{20, 133, 219}
+\definecolor{carrot}{RGB}{244, 157, 55}
+\definecolor{spec}{RGB}{204,102,0}
+\definecolor{dark-green}{RGB}{0,102,0}
+\definecolor{newtype}{RGB}{255, 30, 30}
+
+\definecolor{forestgreen}{HTML}{28a428}
+\definecolor{green2}{HTML}{00b33c}
+\definecolor{commentgrey}{rgb}{0.6,0.6,0.6}
+
+\definecolor{purp}{HTML}{C678DD}
+\definecolor{yell}{HTML}{E5C07B}
+
+\lstdefinelanguage{mypython}
+{
+mathescape=false,
+aboveskip=1pt,
+basicstyle=\ttfamily,
+keywords={def, class, from, import, lambda, as, assert, break, continue, del, if, else, elif, except, finally, for, global, in, is, 
+  not, nonlocal, or, pass, raise, return, try, while, with, yield},
+keywords=[2]{str, int, float, complex, list, tuple, range, dict, set, frozenset, bool, bytes, bytearray, memoryview, NoneType},
+%keywords=[3]{upper, input, open, write, print}, % python functions
+%keywords=[4]{os, sys}, % python classes
+%keywords=[5]{fibonacci, __init__, greet, __name__}, % user-defined functions
+%keywords=[6]{SampleClass, ValueError}, % user-defined classes
+keywordstyle={\color{crimson}},
+keywordstyle=[2]{\color{carrot}},
+%keywordstyle=[3]{\color{carrot}},
+%keywordstyle=[4]{\color{green2}},
+%keywordstyle=[5]{\color{carrot}},
+%keywordstyle=[6]{\color{green2}},
+moredelim=[s][\color{steelblue}]{"}{"},
+moredelim=[s][\color{steelblue}]{'}{'},
+moredelim=*[s][\color{steelblue}]{f"}{"},
+moredelim=[s][\color{steelblue}]{f'}{'},
+moredelim=*[s][]{\{}{\}},
+commentstyle=\itshape\color{commentgrey},
+morecomment=[l]{\#},
+columns=[l]fullflexible,
+sensitive=true,
+escapeinside={*?}{?*},
+keepspaces=true,
+}
+
+\newcounter{lst}
+
+\lstnewenvironment{pythonlst}[1][none]{
+  \lstset{language=mypython,numbers=#1,caption={\vspace*{-2em}},aboveskip=-1em, basicstyle=\ttfamily\footnotesize}
+} {\addtocounter{lst}{1}}
