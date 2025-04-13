@@ -627,7 +627,7 @@ def interactive_avg():
 #interactive_avg()
 
 def bank_help():
-  print("Available operations.")
+  print("Available operations:")
   print("1. Get Balance")
   print("2. Deposit")
   print("3. Withdraw")
