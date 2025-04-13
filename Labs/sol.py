@@ -119,7 +119,7 @@ def fib_for(n: int) -> int:
 
   return a
 
-def print_help():
+"""def print_help():
   print("Available operations.")
   print("-1. Quit")
   print("0. Help")
@@ -127,7 +127,7 @@ def print_help():
   print("2. Subtract")
   print("3. Multiply")
   print("4. Divide")
-  print("5. Modulo")
+  print("5. Modulo")"""
 
 """def calculator():
   print_help()
@@ -510,3 +510,176 @@ def test_bin_search():
   print("test_bin_search ok")
 
 test_bin_search()
+
+def is_n_n(mtx: list[list[float]]) -> bool:
+  line_num = len(mtx)
+  for i in range(line_num):
+    if len(mtx[i]) != line_num:
+      return False
+  return True
+
+def test_is_n_n():
+  assert is_n_n([])
+  assert is_n_n([[1]])
+  assert is_n_n([[1,2], [3,4]])
+  assert not is_n_n([[1,2]])
+  assert not is_n_n([[1,2], [3]])
+  print("test_is_n_n ok")
+
+test_is_n_n()
+
+def matrix_sum(mtx1, mtx2: list[list[float]]) -> list[list[float]]:
+  assert is_n_n(mtx1)
+  assert is_n_n(mtx2)
+  assert len(mtx1) == len(mtx2)
+
+  res = []
+  n = len(mtx1)
+  for i in range(n):
+    line = []
+    for j in range(n):
+      line.append(mtx1[i][j] + mtx2[i][j])
+    res.append(line)
+
+  return res
+
+def test_matrix_sum():
+  assert matrix_sum([[15]], [[15]]) == [[30]]
+  assert matrix_sum([[1,1], [1,1]], [[2,2], [2,2]]) == [[3,3], [3,3]]
+  assert matrix_sum([[1,2], [3,4]], [[5,6], [7,8]]) == [[6,8], [10,12]]
+  assert matrix_sum([[1,1], [1,1]], [[0,0], [0,0]]) != [[3,3], [3,3]]
+  print("test_matrix_sum ok")
+
+test_matrix_sum()
+
+def is_matrix(mtx: list[list[float]]) -> bool:
+  line_num = len(mtx)
+  col_num = len(mtx[0])
+  for i in range(1, line_num):
+    if col_num != len(mtx[i]):
+      return False
+  return True
+
+def transpose(mtx: list[list[float]]) -> list[list[float]]:
+  assert is_matrix(mtx)
+  
+  num_line = len(mtx)
+  num_col = len(mtx[0])
+
+  res = []
+  for j in range(num_col):
+    line = []
+    for i in range(num_line):
+      line.append(mtx[i][j])
+    res.append(line)
+
+  return res
+
+def test_transpose():
+  assert transpose([[1,2], [2,1]]) == [[1,2], [2,1]]
+  assert transpose([[1,2], [3,4]]) == [[1,3], [2,4]]
+  assert transpose([[1,2], [3,4], [5,6]]) == [[1, 3, 5], [2, 4, 6]]
+  print("test_transpose ok")
+
+test_transpose()
+
+def merge_sorted(l1, l2: list[float]) -> list[float]:
+  assert is_sorted(l1) and is_sorted(l2)
+  size1 = len(l1)
+  size2 = len(l2)
+  i1 = 0
+  i2 = 0
+  res = []
+  while i1 < size1 or i2 < size2:
+    if i1 >= size1 or (i2 < size2 and l1[i1] >= l2[i2]):
+      res.append(l2[i2])
+      i2 += 1
+    elif i2 >= size2 or (i1 < size1 and l1[i1] < l2[i2]):
+      res.append(l1[i1])
+      i1 += 1
+  return res
+
+def test_merge_sorted():
+  assert merge_sorted([1], [2]) == [1,2]
+  assert merge_sorted([1,3], [2]) == [1,2,3]
+  assert merge_sorted([1,2,3], [2,4]) == [1,2,2,3,4]
+  assert merge_sorted([0,2,4,5,6,7,10,12,13], [1,3,8,9,11]) == [0,1,2,3,4,5,6,7,8,9,10,11,12,13] 
+  print("test_merge_sorted ok")
+
+test_merge_sorted()
+
+def interactive_avg():
+  is_on = True
+  sum = 0
+  count = 0
+  while is_on:
+    val = input("Write a number: ")
+    if val == "end":
+      is_on = False
+    else:
+      try:
+        sum += float(val)
+        count += 1
+        print("Average: ", str(sum/count))
+      except ValueError:
+        print("Not a number!")
+
+#interactive_avg()
+
+def bank_help():
+  print("Available operations.")
+  print("1. Get Balance")
+  print("2. Deposit")
+  print("3. Withdraw")
+  print("4. Help")
+  print("5. Quit")
+
+def deposit(currBalance):
+  amount = None
+  while amount == None:
+    try:
+      amount = float(input("Deposit amount: "))
+      if amount <= 0:
+        print("Not a positive amount! Operation Cancelled")
+        return currBalance
+      else:
+        return currBalance + amount
+    except:
+      print("Not a number!")
+
+def withdraw(currBalance):
+  amount = None
+  while amount == None:
+    try:
+      amount = float(input("Withdraw amount: "))
+      if amount <= 0:
+        print("Not a positive amount! Operation Cancelled")
+        return currBalance
+      elif amount > currBalance:
+        print("Insufficient amount! Operation Cancelled")
+        return currBalance
+      else:
+        return currBalance - amount
+    except:
+      print("Not a number!")
+
+def bank_account():
+  is_on = True
+  balance = 0
+  bank_help()
+  while is_on:
+    op = input("Choose an operation: ")
+    if op == "1":
+      print("Balance = " + str(balance))
+    elif op == "2":
+      balance = deposit(balance)
+    elif op == "3":
+      balance = withdraw(balance)
+    elif op == "4":
+      bank_help()
+    elif op == "5":
+      is_on = False
+    else:
+      print("Unknown operation!")
+
+#bank_account()
