@@ -55,14 +55,32 @@ learning purposes, we encourage students to "reprogram" said problems.
 \begin{enumerate}[a)]
   \item Develop a function that receives an integer and calculates whether it 
     is odd or even.
+    \begin{pythonlst}
+def is_even(n: int) -> bool:
+  return n % 2 == 0
+    \end{pythonlst}
+  \vspace{-6mm}
   \item Develop a test function for the Even Odd problem.
-\end{enumerate}
+    \begin{pythonlst}
+def test_even_odd():
+  assert is_even(0)
+  assert not is_even(1)
+  assert is_even(2)
+  assert not is_even(3)
+  assert is_even(100)
+  assert not is_even(101)
+  print("test_even_odd ok")
 
-%\subsubsection*{Solution 1a - Even Odd}
-%\begin{pythonlst}
-%def is_even(n: int) -> bool:
-%  return n \% 2 == 0
-%\end{pythonlst}
+test_even_odd()
+    \end{pythonlst}
+    \vspace{-6mm}
+    \textbf{Note} that an assert statement is expecting a boolean value, which 
+    is exactly what $is\_even$ returns, as such, we can shorten 
+    $is\_even(0) == True$ to $is_even(0)$, and $is\_even(1) == False$ to 
+    $not is\_even(1)$. Moreover, the value in the assert statement must be true,
+    otherwise the program execution will stop abruptly to signal an error was
+    encountered. 
+\end{enumerate}
 
 \subsection*{Exercise 2 - Grade Calculator} 
 
@@ -91,10 +109,63 @@ The following grading system is commonly used in the United States of America:
   \item Develop a function that receives an integer and calculates the 
     corresponding letter grade. \textbf{Remember} to verify if the number 
     received is within the desired scale.
+  \begin{pythonlst}
+def grade_calculator(n: float) -> str:
+  if n < 0 or 100 < n:
+    return "Invalid grade"
+
+  n = round(n)
+
+  if n < 60:
+    return "F"
+  elif n < 70:
+    return "D"
+  elif n < 80:
+    return "C"
+  elif n < 90:
+    return "B"
+  else:
+    return "A"
+  \end{pythonlst}
+  \vspace{-6mm}
   \item Develop a test function for the Grade Calculator problem.
+  \begin{pythonlst}
+def test_grade_calculator():
+  assert grade_calculator(-1) == "Invalid grade"
+  assert grade_calculator(101) == "Invalid grade"
+  assert grade_calculator(40) == "F"
+  assert grade_calculator(59.2) == "F"
+  assert grade_calculator(59.8) == "D"
+  assert grade_calculator(71) == "C"
+  assert grade_calculator(81) == "B"
+  assert grade_calculator(91) == "A"
+  assert grade_calculator(100) == "A"
+  print("test_grade_calculator ok")
+
+test_grade_calculator()
+  \end{pythonlst}
+  \vspace{-6mm}
   \item Develop an interactive program for the Grade Calculator problem. The 
     user should also be able to terminate the program, for instance with the 
-    word "end". \textbf{Remember} to verify if the input is valid.
+    word "end". \textbf{Remember} to verify if the input is valid. \\
+  \begin{pythonlst}
+def interactive_grade_calculator():
+  is_on = True
+  while is_on:
+    val = input("Enter a number from 0 to 100: ")
+    if val == "end":
+      is_on = False
+    else:
+      try:
+        val = float(val)
+        grade = grade_calculator(val)
+        print(str(val) + " corresponds to " + grade)
+      except:
+        print("Not a number!")
+
+interactive_grade_calculator()
+  \end{pythonlst}
+  \vspace{-6mm}
 \end{enumerate}
 
 \subsection*{Exercise 3 - List Summation}
@@ -109,16 +180,96 @@ index $0$ to $n-1$. The sum of the elements in sequence $a$, can be expressed as
 \begin{enumerate}[a)]
   \item Develop a function that receives a list of floats and calculates the
     sum of its elements.
+\begin{pythonlst}
+def summation(l: list[float]) -> float:
+  res = 0
+  for i in l:
+    res += i #equivalent to: res = res + i
+  return res
+\end{pythonlst}
+%\vspace{-4mm}
+\textbf{Note} that in '$\textit{for } i \textit{ in } l$' (line 3), $i$ will 
+contain the values of the elements of the list. For instance, if $l = [2, 1, 0]$, 
+then $i$ would start as $2$, then after updated $res$, would become $1$, and, 
+finally, $0$.
   \item Develop a test function for the List Summation problem.
+  \begin{pythonlst}
+def test_summation():
+  assert summation([]) == 0
+  assert summation([0]) == 0
+  assert summation([1]) == 1
+  assert summation([0,1,2]) == 3
+  assert summation([2,1,0]) == 3
+  assert summation([3,3,3]) == 9
+  assert summation([2, 6.2, 9.1, 30, 10]) == 57.3
+  print("test_summation ok")
+
+test_summation()
+  \end{pythonlst}
+  \vspace{-6mm}
   \item \textbf{Challenge:} Repeat the previous subproblems, but only sum the 
-    even numbers in the list.
+    even numbers in the list. 
+    \begin{pythonlst}
+def even_summation(l: list[int]) -> int:
+  res = 0
+  for i in l:
+    if i % 2 == 0:
+      res += i
+  return res
+
+def test_even_summation():
+  assert even_summation([]) == 0
+  assert even_summation([0]) == 0
+  assert even_summation([1]) == 0
+  assert even_summation([0,1,2]) == 2
+  assert even_summation([2,1,0]) == 2
+  assert even_summation([3,3,3]) == 0
+  assert even_summation([2, 6, 9, 30, 10]) == 48
+  print("test_even_summation ok")
+
+  test_even_summation()
+    \end{pythonlst}
+    \vspace{-3mm}
+\textbf{Note} that in this variation of the problem, we choose to change the
+data type of the parameter from a list of floats to a list of integers, because 
+the even or odd definition does not apply to real numbers. While Python does 
+not necessarily forbid the use of the modulo operator with floats, it may result
+in undefined or strange behaviour, which is best avoided.
 \end{enumerate}
 
 \subsection*{Exercise 4 - Vowel Count}
 \begin{enumerate}[a)]
   \item Develop a function that calculates the number of vowels in a string.
     \textbf{Warning}: The comparison between strings is \textbf{case-sensitive}.
+\begin{pythonlst}
+def count_vowels(s: str) -> int:
+  res = 0
+  for c in s:
+    c = c.lower() #or c = c.upper(), and change "a" to "A", etc.
+    if c == "a" or c == "e" or c == "i" or c == "o" or c == "u":
+      res += 1
+  return res
+\end{pythonlst}
+\textbf{Note} that choosing to use lower-case is just a convention, upper-case
+is also valid. While the if-expression is quite verbose due to the 5 comparisons 
+in succession, due to its simplicity it is perfectly acceptable. In Python,
+unlike most other languages, there exists a shortcut:
+$\textit{if } c \textit{ in } ["a", "e", "i", "o", "u"]$, which under the hood
+makes $c$ iterate over the values of the list, basically hiding a for loop.
+
   \item Develop a test function for the Vowel Count problem.
+\newpage
+\begin{pythonlst}
+def test_count_vowels():
+  assert count_vowels("") == 0
+  assert count_vowels("my") == 0
+  assert count_vowels("aeiou") == 5
+  assert count_vowels("Hi, John!") == 2
+  assert count_vowels("Almonds") == 2
+  print("test_count_vowels ok")
+
+test_count_vowels()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 5 - Multiplication Table}
@@ -154,12 +305,32 @@ the first time, one example being:
       \end{tabular}
   \end{center}
 \end{table}
-
+\vspace{-7mm}
 \begin{enumerate}[a)]
   \item Develop an interactive program that prints the multiplication table
     for numbers selected by the user one at a time. The user should also be
     able to terminate the program, for instance with the word "end". 
     \textbf{Remember} to verify if the input is valid.
+\begin{pythonlst}
+def mult_table(n: int) -> None:
+  for i in range(1, 11):
+    print(str(n) + " * " + str(i) + " = " + str(n*i))
+
+def interactive_mult_table():
+  is_on = True
+  while is_on:
+    val = input("Enter an integer: ")
+    if val == "end":
+      is_on = False
+    else:
+      try:
+        val = int(val)
+        mult_table(val)
+      except:
+        print("Not an integer!")
+
+interactive_mult_table()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 6 - Fibonacci}
@@ -170,11 +341,90 @@ reaches the $n^{th}$ number, using a loop.
 \[\text{Fibonacci sequence: } 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...\]
 \begin{enumerate}[a)]
   \item Develop a function that calculates the $n^{th}$ Fibonacci number.
+\begin{pythonlst}
+def fib_for(n: int) -> int:
+  if n < 0:
+    return
+  elif n <= 1:
+    return n
+
+  a = 0
+  b = 1
+
+  for _ in range(1, n): # goes from 1 to n-1, meaning n-1 iterations
+    sum = a+b
+    a = b
+    b = sum
+
+  return b
+\end{pythonlst}
+
+\textbf{Note} that in this context we are not particularly interested in the
+value of the "loop" variable, which is omitted with $\_$, or those specific 
+starting and ending values of the range, instead we just need to perform a given 
+number of iterations, this being $n-1$, because we start with $Fib_{1}$, and to
+calculate $Fib_{2}$ we need one iteration, so to calculate $Fib_{n}$, we need 
+$n-1$ iterations. Finally, one particularly of this solution is that we return 
+None (omitted) if the number is negative.
   \item Develop a test function for the Fibonacci problem.
+\begin{pythonlst}
+def test_fib_for():
+  assert fib_for(-1) == None
+  assert fib_for(0) == 0 
+  assert fib_for(1) == 1
+  assert fib_for(2) == 1
+  assert fib_for(3) == 2
+  assert fib_for(4) == 3
+  assert fib_for(5) == 5
+  assert fib_for(10) == 55
+  assert fib_for(18) == 2584
+  print("test_fib_for ok")
+
+test_fib_for()
+\end{pythonlst}
   \item \textbf{Challenge:} Repeat the previous subproblems for the Tribonacci 
     problem, which instead of summing the two previous number, sums the three
     previous numbers. The Tribonacci sequence is as follows: $0, 1, 1, 2, 4, 7,
     13, 24, 44, 81, ...$.
+\begin{pythonlst}
+def tribonacci_for(n: int) -> int:
+  if n < 0:
+    return
+  
+  if n <= 1:
+    return n
+
+  a = 0
+  b = 1
+  c = 1
+  
+  for _ in range(2, n):
+    sum = a+b+c
+    a = b
+    b = c
+    c = sum
+
+  return c
+
+def test_tribonacci_for():
+  assert tribonacci_for(-1) == None
+  assert tribonacci_for(0) == 0
+  assert tribonacci_for(1) == 1
+  assert tribonacci_for(2) == 1
+  assert tribonacci_for(3) == 2
+  assert tribonacci_for(4) == 4
+  assert tribonacci_for(5) == 7
+  assert tribonacci_for(10) == 149
+  assert tribonacci_for(18) == 19513
+  print("test_tribonacci_for ok")
+
+test_tribonacci_for()
+\end{pythonlst}
+\textbf{Note} that this implementation is quite similar to the Fibonacci problem,
+the biggest differences are the introduction of a third variable ($c$), and the
+range goes from $2$ to $n-1$, which corresponds to $n-2$ iterations, because we
+start with $Trib_{2}$, and to calculate $Trib_{3}$ we need one iteration, so to 
+calculate $Trib_{n}$, we need $n-2$ iterations.
 \end{enumerate}
 
 \subsection*{Exercise 7 - Factorial}

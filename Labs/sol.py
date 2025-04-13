@@ -43,6 +43,22 @@ def test_grade_calculator():
 
 test_grade_calculator()
 
+def interactive_grade_calculator():
+  is_on = True
+  while is_on:
+    val = input("Enter a number from 0 to 100: ")
+    if val == "end":
+      is_on = False
+    else:
+      try:
+        val = float(val)
+        grade = grade_calculator(val)
+        print(str(val) + " corresponds to " + grade)
+      except:
+        print("Not a number!")
+
+#interactive_grade_calculator()
+
 def somatorio(l: list[float]) -> float:
   res = 0
   for i in l:
@@ -79,12 +95,26 @@ def test_count_vowels():
 
 test_count_vowels()
 
-def tabuada(n: int) -> None:
+def mult_table(n: int) -> None:
   for i in range(1, 11):
     print(str(n) + " * " + str(i) + " = " + str(n*i))
 
-#tabuada(1)
-#tabuada(5)
+def interactive_mult_table():
+  is_on = True
+  while is_on:
+    val = input("Enter an integer: ")
+    if val == "end":
+      is_on = False
+    else:
+      try:
+        val = int(val)
+        mult_table(val)
+      except:
+        print("Not an integer!")
+
+#mult_table(1)
+#mult_table(5)
+#interactive_mult_table()
 
 def is_palindrome(s: str) -> bool:
   size = len(s)
@@ -108,54 +138,68 @@ def test_is_palindrome():
 test_is_palindrome()
 
 def fib_for(n: int) -> int:
+  if n < 0:
+    return
+  
+  if n <= 1:
+    return n
+
   a = 0
   b = 1
-  sum = a+b
   
-  for _ in range(n):
+  for _ in range(1, n):
+    sum = a+b
     a = b
     b = sum
-    sum = a+b
 
-  return a
+  return b
 
-"""def print_help():
-  print("Available operations.")
-  print("-1. Quit")
-  print("0. Help")
-  print("1. Add")
-  print("2. Subtract")
-  print("3. Multiply")
-  print("4. Divide")
-  print("5. Modulo")"""
+def test_fib_for():
+  assert fib_for(-1) == None
+  assert fib_for(0) == 0 
+  assert fib_for(1) == 1
+  assert fib_for(2) == 1
+  assert fib_for(3) == 2
+  assert fib_for(4) == 3
+  assert fib_for(5) == 5
+  assert fib_for(10) == 55
+  assert fib_for(18) == 2584
+  print("test_fib_for ok")
 
-"""def calculator():
-  print_help()
+test_fib_for()
 
-  is_on = True
-  while is_on:
-    op = input("Select operation: ")
-    if op == "-1":
-      is_on = False
-    elif op == "0":
-      print_help()
-    elif op in ("1", "2", "3", "4", "5"):
-      arg1 = input("Enter 1st number: ")
-      arg2 = input("Enter 2nd number: ")
-      if op == "1":
-        print(str(arg1) + "+" + str(arg2) + "=" + str(arg1+arg2))
-      elif op == "2":
-        print(str(arg1) + "-" + str(arg2) + "=" + str(arg1-arg2))
-      elif op == "3":
-        print(str(arg1) + "*" + str(arg2) + "=" + str(arg1*arg2))
-      elif op == "4":
-        print(str(arg1) + "/" + str(arg2) + "=" + str(arg1/arg2))
-      elif op == "5":
-        print(str(arg1) + "%" + str(arg2) + "=" + str(arg1%arg2))
-    else:
-      print("Invalid operation")
+def tribonacci_for(n: int) -> int:
+  if n < 0:
+    return
+  
+  if n <= 1:
+    return n
 
-calculator()"""
+  a = 0
+  b = 1
+  c = 1
+  
+  for _ in range(2, n):
+    sum = a+b+c
+    a = b
+    b = c
+    c = sum
+
+  return c
+
+def test_tribonacci_for():
+  assert tribonacci_for(-1) == None
+  assert tribonacci_for(0) == 0
+  assert tribonacci_for(1) == 1
+  assert tribonacci_for(2) == 1
+  assert tribonacci_for(3) == 2
+  assert tribonacci_for(4) == 4
+  assert tribonacci_for(5) == 7
+  assert tribonacci_for(10) == 149
+  assert tribonacci_for(18) == 19513
+  print("test_tribonacci_for ok")
+
+test_tribonacci_for()
 
 def maximum(l: list[float]) -> float:
   res = float('-inf')
