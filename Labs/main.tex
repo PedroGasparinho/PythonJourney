@@ -503,6 +503,7 @@ def maximum(l: list[float]) -> float:
       res = e
   return res
   \end{pythonlst}
+  \vspace{-4mm}
   \textbf{Note} that we want to initialize the result with the smallest amount
   possible, otherwise, the result might be altered unknowingly. For instance,
   if $res$ starts at $0$, then the maximum value of a list with just negative 
@@ -596,7 +597,11 @@ def second_minimum(l: list[float]) -> float:
     elif min < e and e < res:
       res = e
   return res
-
+\end{pythonlst}
+\textbf{Note} that calculating the second-lowest value follows a similar logic
+to calculating the second-highest, just beware of the inequality signs.
+\newpage
+\begin{pythonlst}
 def test_second_minimum():
   assert second_minimum([]) == float('inf')
   assert second_minimum([0]) == float('inf')
@@ -607,8 +612,6 @@ def test_second_minimum():
 
 test_second_minimum()
 \end{pythonlst}
-\textbf{Note} that calculating the second-lowest value follows a similar logic
-to calculating the second-highest, just beware of the inequality signs.
 \end{enumerate}
 
 \subsection*{Exercise 9 - Prime Numbers}
@@ -923,6 +926,7 @@ def remove_elem(l: list[int], n: int) -> list[int]:
   return res
 \end{pythonlst}
   \item Develop a test function for the Common Elements problem.
+\newpage
 \begin{pythonlst}
 def test_remove_elem():
   assert remove_elem([1,2,3], 1) == [2,3]
@@ -1019,7 +1023,7 @@ def test_is_sorted():
 test_is_sorted()
 \end{pythonlst}
 \end{enumerate}
-
+\newpage
 \subsection*{Exercise 21 - Binary Search}
 Imagine that we have a sorted list, and we are looking for a specific value,
 would linear search be efficient? Possibly not, we might be looking for large
@@ -1051,7 +1055,7 @@ def bin_search(l:list[int], n: int) -> bool:
   upper = len(l) - 1
 
   while lower <= upper:
-    mid = lower + (upper - lower)//2
+    mid = (lower + upper)//2
     if l[mid] == n:
       return True
     elif l[mid] > n:
@@ -1062,6 +1066,20 @@ def bin_search(l:list[int], n: int) -> bool:
   return False
     
     \end{pythonlst}
+    \textbf{Note} that when $n$ is equal to the midway point, we return $True$,
+    because we found the correct value. On the other hand, if the while loop is
+    broken (i.e. $lower$ becomes greater than $upper$, meaning a nonsensical 
+    interval), then it means the value was not present in the list, therefore
+    we wish to return $False$. Regarding the initial boundaries, as excepted
+    $lower = 0$ and $upper = len(l) - 1$, this corresponds to the full interval
+    of indexes for list $l$. The $mid$ variable can be calculated as half of the
+    sum of the $lower$ and $upper$ boundaries (middle point formula). Since, $mid$
+    is used for accessing various of a list, then it must be an integer, thus
+    we use the integer division. In intervals with and odd number of elements, 
+    we need to choose between the two middle elements, by disregarding the
+    remainder (what we do here), we select the first middle element, while 
+    considering the remainder (with value $1$, since we divide by $2$), then we 
+    would be selecting the second middle element.
   \item Develop a test function for the Binary Search problem.
 \begin{pythonlst}
 def test_bin_search():
@@ -1074,7 +1092,7 @@ def test_bin_search():
 test_bin_search()
 \end{pythonlst}
 \end{enumerate}
-
+\newpage
 \subsection*{Exercise 22 - Matrix Sum}
 Let $A$ and $B$, be two $n*n$ matrices, then:
 \[ A+B = 
@@ -1167,8 +1185,6 @@ def test_matrix_sum():
 test_matrix_sum()
 \end{pythonlst}
 \end{enumerate}
-
-\newpage
 
 \subsection*{Exercise 23 - Matrix Transposition}
 Let $A$ be $n*m$ matrix, and if:
@@ -1318,9 +1334,9 @@ element in order, for instance, for $l1$ and $l2$:
 \noindent \textbf{Suggestion:} To achieve this, use a while loop that iterates 
 over both lists at the same time, but only advance one element of one of the 
 lists at a time.
-
 \begin{enumerate}[a)]
   \item Develop a function that performs the sorted concatenation of two lists.
+\newpage
 \begin{pythonlst}
 def sorted_concat(l1, l2: list[float]) -> list[float]:
   assert is_sorted(l1) and is_sorted(l2)
@@ -1338,6 +1354,7 @@ def sorted_concat(l1, l2: list[float]) -> list[float]:
       i1 += 1
   return res
 \end{pythonlst}
+\vspace{-4mm}
   \item Develop a test function for the Sorted Concatenation problem.
 \begin{pythonlst}
 def test_sorted_concat():
@@ -1349,6 +1366,7 @@ def test_sorted_concat():
 
 test_sorted_concat()
 \end{pythonlst}
+\vspace{-4mm}
 \end{enumerate}
 
 \subsection*{Exercise 26 - Bank Account}
