@@ -436,21 +436,179 @@ backwards.
 \begin{enumerate}[a)]
   \item Develop a function that calculates the factorial of a number $n$ by 
     looping forward, i.e., from $1$ to $n$.
+  \newpage
+  \begin{pythonlst}
+def factorial_forward(n: int) -> int:
+  if n < 0:
+    return -1
+
+  res = 1
+  for e in range(1, n+1):
+    res = res * e
+  return res
+  \end{pythonlst}
+  \textbf{Note} that 1 is the multiplicative neutral element, therefore, we
+  initialize the result variable ($res$) with 1. The by multiplying every 
+  integer number from 1 to n (since range(1, n+1) goes from 1 to n).
   \item Develop a function that calculates the factorial of a number $n$ by 
     looping backwards, i.e., from $n$ to $1$.
+    \begin{pythonlst}
+def factorial_backwards(n: int) -> int:
+  if n < 0:
+    return -1
+
+  res = 1
+  for e in range(n, 0, -1):
+    res = res * e
+  return res
+    \end{pythonlst}
+    \textbf{Note} that 1 is the multiplicative neutral element, therefore, we
+    initialize the result variable ($res$) with 1. By applying a negative step
+    our range does backwards from n to 1, since the last element of the range
+    is excluded (i.e. $0$).
   \item Develop a test function for the Factorial problem.
+  \begin{pythonlst}
+def test_factorial():
+  assert factorial_forward(0) == 1
+  assert factorial_forward(1) == 1
+  assert factorial_forward(2) == 2
+  assert factorial_forward(3) == 6
+  assert factorial_forward(4) == 24
+  assert factorial_forward(5) == 120
+  assert factorial_forward(10) == 3628800
+
+  assert factorial_backwards(0) == 1
+  assert factorial_backwards(1) == 1
+  assert factorial_backwards(2) == 2
+  assert factorial_backwards(3) == 6
+  assert factorial_backwards(4) == 24
+  assert factorial_backwards(5) == 120
+  assert factorial_backwards(10) == 3628800
+  print("test_factorial ok")
+  
+test_factorial()
+  \end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 8 - Maximum Element}
 \begin{enumerate}[a)]
   \item Develop a function that calculates the maximum element of a list of 
     floats. \\ \textbf{Suggestion:} The result variable can be initialized as 
-    $float(inf)$
+    $float(-inf)$
+  \begin{pythonlst}
+def maximum(l: list[float]) -> float:
+  res = float('-inf')
+  for e in l:
+    if e > res:
+      res = e
+  return res
+  \end{pythonlst}
+  \textbf{Note} that we want to initialize the result with the smallest amount
+  possible, otherwise, the result might be altered unknowingly. For instance,
+  if $res$ starts at $0$, then the maximum value of a list with just negative 
+  numbers would wrongly be zero. Alternatively, $res$ could have been initialized
+  with the first element of the list and the iteration start from the 2nd position
+  onwards.
   \item Develop a test function for the Maximum problem.
+\begin{pythonlst}
+def test_maximum():
+  assert maximum([]) == float('-inf')
+  assert maximum([0]) == 0
+  assert maximum([1]) == 1
+  assert maximum([1, 2]) == 2
+  assert maximum([2, 1]) == 2
+  assert maximum([1, 7, 10, 4, 6, 12, 9]) == 12
+  print("test_maximum ok")
+
+test_maximum()
+\end{pythonlst}
   \item Repeat the previous subproblems for the minimum element. \\
-    \textbf{Suggestion:} The result variable can be initialized as $float(-inf)$
+    \textbf{Suggestion:} The result variable can be initialized as $float(inf)$
+\begin{pythonlst}
+def minimum(l: list[float]) -> float:
+  res = float('inf')
+  for e in l:
+    if e < res:
+      res = e
+  return res
+
+def test_minimum():
+  assert minimum([]) == float('inf')
+  assert minimum([0]) == 0
+  assert minimum([1]) == 1
+  assert minimum([1, 2]) == 1
+  assert minimum([2, 1]) == 1
+  assert minimum([1, 7, -10, 4, 6, 12, 9]) == -10
+  print("test_minimum ok")
+
+test_minimum()
+\end{pythonlst}
+\textbf{Note} that for the minimum element of a list, the result variable should
+be initialized with the highest value possible.
   \item \textbf{Challenge:} Repeat the previous subproblems for the second-highest
     value of a list.
+\begin{pythonlst}
+def second_maximum(l: list[float]) -> float:
+  if len(l) < 2:
+    return float('-inf')
+  
+  max = l[0]
+  res = float('-inf')
+  for e in l:
+    if e > max:
+      res = max
+      max = e
+    elif max > e and e > res:
+      res = e
+  return res
+
+def test_second_maximum():
+  assert second_maximum([]) == float('-inf')
+  assert second_maximum([0]) == float('-inf')
+  assert second_maximum([1, 2]) == 1
+  assert second_maximum([2, 1]) == 1
+  assert second_maximum([1, 7, 10, 4, 6, 12, 9]) == 10
+  print("test_second_maximum ok")
+
+test_second_maximum()
+\end{pythonlst}
+\textbf{Note} that calculating the second maximum element is slightly harder,
+and to do so we need variables for both the maximum and the second-highest values.
+This problem has an easy solution, which would be to loop through the list twice, 
+once to find the maximum, and the second to find the second-highest value. On 
+the other hand, our solution only iterates over the list once. There are two
+situations, where the second-highest candidate can be found, either we find a 
+better candidate for the maximum value (if-statement), and the previous maximum
+candidate becomes the second-highest candidate, or, when we find a value that
+is superior to our second-highest candidate but not to the maximum value.
+
+\begin{pythonlst}
+def second_minimum(l: list[float]) -> float:
+  if len(l) < 2:
+    return float('inf')
+  
+  min = l[0]
+  res = float('inf')
+  for e in l:
+    if e < min:
+      res = min
+      min = e
+    elif min < e and e < res:
+      res = e
+  return res
+
+def test_second_minimum():
+  assert second_minimum([]) == float('inf')
+  assert second_minimum([0]) == float('inf')
+  assert second_minimum([1, 2]) == 2
+  assert second_minimum([2, 1]) == 2
+  assert second_minimum([1, 7, 10, 4, 6, 12, 9]) == 4
+  print("test_second_minimum ok")
+
+test_second_minimum()
+\end{pythonlst}
+\textbf{Note} that calculating the second-lowest value follows a similar logic
+to calculating the second-highest, just beware of the inequality signs.
 \end{enumerate}
 
 \subsection*{Exercise 9 - Prime Numbers}
@@ -459,7 +617,39 @@ and one. The first five prime numbers are: $2, 3, 5, 7, 11$.
 
 \begin{enumerate}[a)]
   \item Develop a function that calculates if a given integer is a prime number.
+\begin{pythonlst}
+def is_prime(n: int) -> bool:
+  if n <= 1:
+    return False
+  
+  for i in range(2, n):
+    if n % i == 0:
+      return False
+    
+  return True
+\end{pythonlst}
+\textbf{Note} that for any positive integer, its divisors can be found between 
+$1$ and itself, and a number is divisible by another if their modulo is zero. So,
+if the modulo of the prime candidate by a number is zero in the range of $2$ to
+$n-1$, then it is not prime, in which case we use $return$ to terminate early. 
+If the loop terminates without returning early, then it means no divisor in the 
+range of $2$ to $n-1$ exists, therefore it is prime. One deliberate "mistake" in
+the previous implementation is that we check in the range from $2$ to $n-1$,
+however, theoretical results state that it suffices to check in the range from 
+$2$ to $\sqrt{n}$, however for simplicity and in the case of some students being
+unaware of that property, we decided to cover the full range. 
   \item Develop a test function for the Prime Numbers problem.
+\begin{pythonlst}
+def test_is_prime():
+  assert not is_prime(1)
+  assert is_prime(2)
+  assert is_prime(3)
+  assert not is_prime(4)
+  assert is_prime(97)
+  print("test_is_prime ok")
+
+test_is_prime()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 10 - Common Elements}
@@ -467,7 +657,33 @@ and one. The first five prime numbers are: $2, 3, 5, 7, 11$.
   \item Develop a function that calculates the number of common elements at the 
     \textbf{same position} of two lists. \textbf{Warning:} the two lists may be 
     of different sizes, as such, beware of indexes out of bound.
+\begin{pythonlst}
+def count_eq_in_pos(l1, l2: list) -> int:
+  size = min(len(l1), len(l2))
+
+  res = 0
+  for i in range(size):
+    if l1[i] == l2[i]:
+      res += 1
+
+  return res
+\end{pythonlst}
+\textbf{Note} that accessing an invalid position of a list stops the program
+execution and displays the error "list index out of range", therefore we may
+only go until the end of the smallest array.
   \item Develop a test function for the Common Elements problem.
+\begin{pythonlst}
+def test_count_eq_in_pos():
+  assert count_eq_in_pos([], []) == 0
+  assert count_eq_in_pos([2], [2]) == 1
+  assert count_eq_in_pos([5], [9]) == 0
+  assert count_eq_in_pos([2, 5], [2]) == 1
+  assert count_eq_in_pos([1,2,3], [3,2,1]) == 1
+  assert count_eq_in_pos([1,2,3], [1,2,3]) == 3
+  print("test_count_eq_in_pos ok")
+
+test_count_eq_in_pos()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 11 - Digit Sum}
@@ -475,7 +691,35 @@ and one. The first five prime numbers are: $2, 3, 5, 7, 11$.
   \item Develop a function that calculates the sum of all digits of an integer. 
   \textbf{Suggestion:} Convert the integer to a string and only consider 
     non-negative values.
+\begin{pythonlst}
+def sum_digits(n: int):
+  digits = str(n)
+  sum = 0
+  for d in digits:
+    sum = sum + int(d)
+  return sum
+\end{pythonlst}
+\textbf{Note} that by considering the integer as a string, the problem becomes
+quite simple, since strings function similarly to lists in Python, in other words,
+the $\textit{for } d \textit{ in } digits$ expression separates the string into
+sub-strings containing just a single character ($d$), corresponding to a single
+digit. Now that we can consider each digit individually as a string, we just 
+need to convert it to integer and perform the sum. 
   \item Develop a test function for the Digit Sum problem.
+\begin{pythonlst}
+def test_sum_digits():
+  assert sum_digits(0) == 0
+  assert sum_digits(1) == 1
+  assert sum_digits(11) == 2
+  assert sum_digits(123) == 6
+  assert sum_digits(1234) == 10
+  assert sum_digits(96) == 15
+  assert sum_digits(100) == 1
+  assert sum_digits(2718) == 18
+  print("test_sum_digits ok")
+
+test_sum_digits()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 12 - Digital Root}
@@ -488,7 +732,33 @@ contains a single digit. For instance:
   \item Develop a function that calculates the digital root of an integer. 
   \textbf{Suggestion:} Use the function from the previous exercise until the 
     stopping condition is met.
+\begin{pythonlst}
+def digital_root(n: int):
+  res = n
+  while res >= 10:
+    res = sum_digits(res)
+  return res
+\end{pythonlst}
+\textbf{Note} that the digital root is the repeated sum of digits, ensuring that
+the final result has a single digit. As such, the simplest solution makes use of
+the previously developed function, inside a while loop checking for results with
+more than one digit. By attributing $n$ to the $res$ variable, one positive
+consequence is that we may skip the loop for values of $n$ smaller than $10$.
   \item Develop a test function for the Digit Root problem.
+\begin{pythonlst}
+def test_digital_root():
+  assert digital_root(0) == 0
+  assert digital_root(1) == 1
+  assert digital_root(11) == 2
+  assert digital_root(123) == 6
+  assert digital_root(1234) == 1
+  assert digital_root(96) == 6
+  assert digital_root(100) == 1
+  assert digital_root(2718) == 9
+  print("test_digital_root ok")
+
+test_digital_root()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 13 - Count Character}
@@ -497,7 +767,35 @@ contains a single digit. For instance:
     occurs in a string. \textbf{Warning:} Remember that python does not support 
     characters directly like other languages, as such, one must use a string and 
     guarantee that it has length of one.
+\begin{pythonlst}
+def count_char(c: str, s: str) -> int:
+  if len(c) != 1:
+    return -1
+  
+  res = 0
+  for e in s:
+    if e == c:
+      res += 1
+  return res
+\end{pythonlst}
+\textbf{Note} that when variable $c$ holds a string with length different than
+$1$, i.e. it is not a character, then we return $-1$, which encodes to an invalid
+result. Since strings in Python function similarly to lists, then it is possible
+to separate a string into sub-strings of just one character, using $\textit{for }
+e \textit{ in } s$.
   \item Develop a test function for the Count Character problem.
+\begin{pythonlst}
+def test_count_char():
+  assert count_char("c", "count count count") == 3
+  assert count_char("s", "count count count") == 0
+  assert count_char("c", "") == 0
+  assert count_char("as", "as usual") == -1
+  assert count_char("", "count count count") == -1
+  print("count_char ok")
+
+test_count_char()
+\end{pythonlst}
+\vspace{-4mm}
 \end{enumerate}
 
 \subsection*{Exercise 14 - List Filter}
@@ -505,14 +803,58 @@ contains a single digit. For instance:
   \item Develop a function that filters the numbers from a list that are 
     inferior to a certain threshold. \textbf{Suggestion:} The result should be a 
     new list.
+\begin{pythonlst}
+def list_filter(l: list[float], n: float) -> list[float]:
+  res = []
+  for e in l:
+    if e >= n:
+      res.append(e)
+  return res
+\end{pythonlst}
+\vspace{-4mm}
   \item Develop a test function for the Inversion problem.
+\begin{pythonlst}
+def test_list_filter():
+  assert list_filter([], 0) == []
+  assert list_filter([1,2,3,4], 3) == [3,4]
+  assert list_filter([1,2,3,4], 5) == []
+  assert list_filter([1,2,3,4], 0) == [1,2,3,4]
+  print("test_list_filter ok")
+
+test_list_filter()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 15 - Inversion}
 \begin{enumerate}[a)]
   \item Develop a function that inverts the order of the elements in a list. 
     \textbf{Suggestion:} The result should be a new list.
+\begin{pythonlst}
+def invert_list(l: list) -> list:
+  res = []
+  size = len(l)
+  for i in range(size):
+    res.append(l[size-i-1])
+  return res
+\end{pythonlst}
+\textbf{Note} that the expression $size-i-1$, with $i = 0, ..., size-1$, will 
+result in accessing the positions of the list from end to start. Similarly, one
+could use $\textit{for } i \text{ in range}(size-1, -1, -1)$, which is equivalent
+to $i = size-1, ..., 0$ (Remember that the range function terminates one value
+earlier that what is passed there).
   \item Develop a test function for the Inversion problem.
+\begin{pythonlst}
+def test_invert_list():
+  assert invert_list([]) == []
+  assert invert_list([1]) == [1]
+  assert invert_list([1, 1]) == [1, 1]
+  assert invert_list([1, 2]) == [2,1]
+  assert invert_list([1,2,3]) == [3,2,1]
+  assert invert_list([1, 6, 8, 9, 2, 3, 5, 7]) == [7, 5, 3, 2, 9, 8, 6, 1]
+  print("test_invert_list ok")
+
+test_invert_list()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 16 - Palindromes}
@@ -532,7 +874,39 @@ if the student wishes. \\
 
 \begin{enumerate}[a)]
   \item Develop a function that determines whether a string is truly palindromic.
+\newpage
+\begin{pythonlst}
+def is_palindrome(s: str) -> bool:
+  size = len(s)
+  if size == 0:
+    return True
+
+  for i in range(size//2 + 1):
+    if s[i] != s[size - i - 1]:
+      return False
+  return True
+\end{pythonlst}
+\textbf{Note} that since we are comparing the $n^{th}$ first and last positions
+of the string, then it suffices to loop through the first half of the loop,
+doing the second half would just repeat the previous comparisons. The halfway
+point is calculated with the integer division ($//$) since the range does not
+allow floats as parameters. A particularity of the integer division is that we
+must compensate the remainder, for instance, consider a list of size $7$, then 
+$7//2 = 3$, which would mean that the halfway point is missing, since $range(3) 
+= 0, 1, 2$, instead we would like $7//2 + 1 = 4$, since $range(4) = 0, 1, 2, 3$
   \item Develop a test function for the Palindromes problem.
+\begin{pythonlst}
+def test_is_palindrome():
+  assert is_palindrome("")
+  assert is_palindrome("aa")
+  assert not is_palindrome("ab")
+  assert is_palindrome("aba")
+  assert not is_palindrome("abb")
+  assert is_palindrome("stop pots")
+  print("test_is_palindrome ok")
+
+test_is_palindrome()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 17 - Remove Element}
@@ -540,14 +914,56 @@ if the student wishes. \\
   \item Develop a function that removes a given element from a list. 
     \textbf{Warning:} The element may be repeated multiple times in the list.
     \textbf{Suggestion:} The result should be in a new list.
+\begin{pythonlst}
+def remove_elem(l: list[int], n: int) -> list[int]:
+  res = []
+  for e in l:
+    if e != n:
+      res.append(e)
+  return res
+\end{pythonlst}
   \item Develop a test function for the Common Elements problem.
+\begin{pythonlst}
+def test_remove_elem():
+  assert remove_elem([1,2,3], 1) == [2,3]
+  assert remove_elem([], 1) == []
+  assert remove_elem([1,2,3], 4) == [1,2,3]
+  assert remove_elem([2], 2) == []
+  assert remove_elem([1,0,1,0,1,0,1], 0) == [1,1,1,1]
+  print("test_remove_elem ok")
+
+test_remove_elem()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 18 - Remove Duplicates}
 \begin{enumerate}[a)]
   \item Develop a function that removes the elements that are duplicated in a 
   list. \textbf{Suggestion:} The result should be a new list.
+\begin{pythonlst}
+def remove_dups(l: list) -> list:
+  res = []
+  for e in l:
+    if not e in res:
+      res.append(e)
+  return res
+\end{pythonlst}
+\textbf{Note} that the keyword $in$ used in the if-statement, works as a hidden 
+loop, i.e., for element $e$, Python will check behind the hood if $e$ is different
+from the elements of $res$ one by one.
   \item Develop a test function for the Remove Duplicates problem.
+\begin{pythonlst}
+def test_remove_dups():
+  assert remove_dups([]) == []
+  assert remove_dups([1]) == [1]
+  assert remove_dups([1, 1]) == [1]
+  assert remove_dups([2, 2, 2]) == [2]
+  assert remove_dups([1, 2, 3]) == [1, 2, 3]
+  assert remove_dups([1, 3, 2, 3, 4, 1, 2, 5, 5, 2, 1, 3]) == [1, 3, 2, 4, 5]
+  print("test_remove_dups ok")
+
+test_remove_dups()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 19 - Linear Search}
@@ -557,13 +973,51 @@ stored there is the desired element. The algorithm returns a boolean to indicate
 whether it was found.
 \begin{enumerate}[a)]
   \item Develop a function that implements linear search.
+\begin{pythonlst}
+def linear_search(l: list[float], n: float) -> list[float]:
+  for e in l:
+    if e == n:
+      return True
+  return False
+\end{pythonlst}
   \item Develop a test function for the Linear Search problem.
+\begin{pythonlst}
+def test_linear_search():
+  assert linear_search([1,2,3], 2)
+  assert not linear_search([1,2,3], 4)
+  assert not linear_search([0,1,2,3,4,5,6,7,8,9], 10)
+  assert linear_search([0,1,2,3,4,5,6,7,8,9], 0)
+  print("test_linear_search ok")
+
+test_linear_search()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 20 - Sorted}
 \begin{enumerate}[a)]
   \item Develop a function to check if a list is sorted \textbf{ascendingly}.
+\begin{pythonlst}
+def is_sorted(l: list[int]) -> bool:
+  for i in range(len(l) - 1):
+    if l[i] > l[i+1]:
+      return False
+  return True
+\end{pythonlst}
   \item Develop a test function for the Sorted problem.
+\begin{pythonlst}
+def test_is_sorted():
+  assert is_sorted([])
+  assert is_sorted([1])
+  assert not is_sorted([2,1])
+  assert is_sorted([1, 3, 5])
+  assert not is_sorted([2, 6, 4, 8])
+  assert not is_sorted([2, 2, 3, 2])
+  assert is_sorted([1, 1, 1, 1])
+  assert is_sorted([-1, -1, 0, 0, 1, 1])
+  print("test_is_sorted ok")
+
+test_is_sorted()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 21 - Binary Search}
@@ -593,21 +1047,32 @@ For clarity, see the following Images:
 def bin_search(l:list[int], n: int) -> bool:
   assert is_sorted(l)
 
-  lower = #TODO
-  upper = #TODO
+  lower = 0
+  upper = len(l) - 1
 
   while lower <= upper:
-    mid = #TODO
+    mid = lower + (upper - lower)//2
     if l[mid] == n:
-      return #TODO
+      return True
     elif l[mid] > n:
       upper = mid - 1
     else:
       lower = mid + 1
-
-  return #TODO
+  
+  return False
+    
     \end{pythonlst}
   \item Develop a test function for the Binary Search problem.
+\begin{pythonlst}
+def test_bin_search():
+  assert bin_search([1,2,3], 2)
+  assert not bin_search([1,2,3], 4)
+  assert not bin_search([0,1,2,3,4,5,6,7,8,9], 10)
+  assert bin_search([0,1,2,3,4,5,6,7,8,9], 0)
+  print("test_bin_search ok")
+
+test_bin_search()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 22 - Matrix Sum}
@@ -651,11 +1116,56 @@ Let $A$ and $B$, be two $n*n$ matrices, then:
 \begin{enumerate}[a)]
   \item Develop a function to check if the matrix has the same number of lines
     and columns.
+\begin{pythonlst}
+def is_n_n(mtx: list[list[float]]) -> bool:
+  line_num = len(mtx)
+  for i in range(line_num):
+    if len(mtx[i]) != line_num:
+      return False
+  return True
+\end{pythonlst}
   \item Develop a test function for the previous subproblem
+\begin{pythonlst}
+def test_is_n_n():
+  assert is_n_n([])
+  assert is_n_n([[1]])
+  assert is_n_n([[1,2], [3,4]])
+  assert not is_n_n([[1,2]])
+  assert not is_n_n([[1,2], [3]])
+  print("test_is_n_n ok")
+
+test_is_n_n()
+\end{pythonlst}
   \item Develop a function that calculates the sum of two matrices. 
   \textbf{Suggestions:} Guarantee that both matrices are $n*n$ and the result 
     should be a new matrix.
+\begin{pythonlst}
+def matrix_sum(mtx1, mtx2: list[list[float]]) -> list[list[float]]:
+  assert is_n_n(mtx1)
+  assert is_n_n(mtx2)
+  assert len(mtx1) == len(mtx2)
+
+  res = []
+  n = len(mtx1)
+  for i in range(n):
+    line = []
+    for j in range(n):
+      line.append(mtx1[i][j] + mtx2[i][j])
+    res.append(line)
+
+  return res
+\end{pythonlst}
   \item Develop a test function for the Matrix Sum problem.
+\begin{pythonlst}
+def test_matrix_sum():
+  assert matrix_sum([[15]], [[15]]) == [[30]]
+  assert matrix_sum([[1,1], [1,1]], [[2,2], [2,2]]) == [[3,3], [3,3]]
+  assert matrix_sum([[1,2], [3,4]], [[5,6], [7,8]]) == [[6,8], [10,12]]
+  assert matrix_sum([[1,1], [1,1]], [[0,0], [0,0]]) != [[3,3], [3,3]]
+  print("test_matrix_sum ok")
+
+test_matrix_sum()
+\end{pythonlst}
 \end{enumerate}
 
 \newpage
@@ -692,11 +1202,60 @@ Let $A$ be $n*m$ matrix, and if:
   \item Develop a function to check if the list of lists has the same number of
     elements in every sub-list. In other words, if it is indeed an $n*m$ matrix,
     and every column has exactly $m$ elements.
+\begin{pythonlst}
+def is_matrix(mtx: list[list[float]]) -> bool:
+  line_num = len(mtx)
+  if line_num == 0:
+    return True
+
+  col_num = len(mtx[0])
+  for i in range(1, line_num):
+    if col_num != len(mtx[i]):
+      return False
+  return True
+\end{pythonlst}
   \item Develop a test function for the previous subproblem
+\begin{pythonlst}
+def test_is_matrix():
+  assert is_matrix([])
+  assert is_matrix([[1]])
+  assert is_matrix([[1,2,3,4]])
+  assert not is_matrix([[1], [1,2]])
+  assert is_matrix([[1,2], [3,4]])
+  assert is_matrix([[1,3,5], [2,4,6]])
+  print("test_is_matrix ok")
+
+test_is_matrix()
+\end{pythonlst}
   \item Develop a function that calculates the transpose of a matrix. 
   \textbf{Suggestions:} Guarantee that it is a valid matrix and the result 
     should be a new matrix.
+\begin{pythonlst}
+def transpose(mtx: list[list[float]]) -> list[list[float]]:
+  assert is_matrix(mtx)
+  
+  num_line = len(mtx)
+  num_col = len(mtx[0])
+
+  res = []
+  for j in range(num_col):
+    line = []
+    for i in range(num_line):
+      line.append(mtx[i][j])
+    res.append(line)
+
+  return res
+\end{pythonlst}
   \item Develop a test function for the Matrix Transposition problem.
+\begin{pythonlst}
+def test_transpose():
+  assert transpose([[1,2], [2,1]]) == [[1,2], [2,1]]
+  assert transpose([[1,2], [3,4]]) == [[1,3], [2,4]]
+  assert transpose([[1,2], [3,4], [5,6]]) == [[1, 3, 5], [2, 4, 6]]
+  print("test_transpose ok")
+
+test_transpose()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 24 - Interactive Average}
@@ -705,18 +1264,18 @@ Let $A$ be $n*m$ matrix, and if:
   of all numbers introduced by the user beforehand:
     \begin{pythonlst}
 def interactive_avg():
-  is_on = #TODO
-  #TODO
-  #TODO
+  is_on = True
+  sum = 0
+  count = 0
   while is_on:
     val = input("Write a number: ")
     if val == "end":
-      is_on = #TODO
+      is_on = False
     else:
       try:
-        #TODO
-        #TODO
-        print("Average: ", """TODO""")
+        sum += float(val)
+        count += 1
+        print("Average: ", str(sum/count))
       except ValueError:
         print("Not a number!")
 
@@ -761,8 +1320,35 @@ over both lists at the same time, but only advance one element of one of the
 lists at a time.
 
 \begin{enumerate}[a)]
-  \item Develop a function that performs the sorted concatenation of two lists. 
+  \item Develop a function that performs the sorted concatenation of two lists.
+\begin{pythonlst}
+def sorted_concat(l1, l2: list[float]) -> list[float]:
+  assert is_sorted(l1) and is_sorted(l2)
+  size1 = len(l1)
+  size2 = len(l2)
+  i1 = 0
+  i2 = 0
+  res = []
+  while i1 < size1 or i2 < size2:
+    if i1 >= size1 or (i2 < size2 and l1[i1] >= l2[i2]):
+      res.append(l2[i2])
+      i2 += 1
+    elif i2 >= size2 or (i1 < size1 and l1[i1] < l2[i2]):
+      res.append(l1[i1])
+      i1 += 1
+  return res
+\end{pythonlst}
   \item Develop a test function for the Sorted Concatenation problem.
+\begin{pythonlst}
+def test_sorted_concat():
+  assert sorted_concat([1], [2]) == [1,2]
+  assert sorted_concat([1,3], [2]) == [1,2,3]
+  assert sorted_concat([1,2,3], [2,4]) == [1,2,2,3,4]
+  assert sorted_concat([0,2,4,5,6,7,10,12,13], [1,3,8,9,11]) == [0,1,2,3,4,5,6,7,8,9,10,11,12,13] 
+  print("test_sorted_concat ok")
+
+test_sorted_concat()
+\end{pythonlst}
 \end{enumerate}
 
 \subsection*{Exercise 26 - Bank Account}
@@ -797,7 +1383,15 @@ only knows (one of) your account(s))
 \begin{enumerate}[a)]
   \item Develop a function for the help operation. It should print the necessary
     information about the operations available.
-  \item Develop a function to print the balance.
+\begin{pythonlst}
+def bank_help():
+  print("Available operations:")
+  print("1. Get Balance")
+  print("2. Deposit")
+  print("3. Withdraw")
+  print("4. Help")
+  print("5. Quit")
+\end{pythonlst}
   \item Complete the following Deposit function:
   \begin{pythonlst}
 def deposit(currBalance):
@@ -805,11 +1399,11 @@ def deposit(currBalance):
   while amount == None:
     try:
       amount = float(input("Deposit amount: "))
-      if """TODO""":
+      if amount <= 0:
         print("Not a positive amount! Operation Cancelled")
-        #TODO
+        return currBalance
       else:
-        #TODO
+        return currBalance + amount
     except:
       print("Not a number!")
   \end{pythonlst}
@@ -821,14 +1415,14 @@ def withdraw(currBalance):
   while amount == None:
     try:
       amount = float(input("Withdraw amount: "))
-      if """TODO""":
+      if amount <= 0:
         print("Not a positive amount! Operation Cancelled")
-        #TODO
-      elif """TODO""":
+        return currBalance
+      elif amount > currBalance:
         print("Insufficient amount! Operation Cancelled")
-        #TODO
+        return currBalance
       else:
-        #TODO
+        return currBalance - amount
     except:
       print("Not a number!")
   \end{pythonlst}
@@ -848,6 +1442,28 @@ def withdraw(currBalance):
         does not appear in the table.
       \item Use the previous functions.
     \end{itemize}
+\begin{pythonlst}
+def bank_account():
+  is_on = True
+  balance = 0
+  bank_help()
+  while is_on:
+    op = input("Choose an operation: ")
+    if op == "1":
+      print("Balance = " + str(balance))
+    elif op == "2":
+      balance = deposit(balance)
+    elif op == "3":
+      balance = withdraw(balance)
+    elif op == "4":
+      bank_help()
+    elif op == "5":
+      is_on = False
+    else:
+      print("Unknown operation!")
+
+bank_account()
+\end{pythonlst}
 \end{enumerate}
 
 \end{document}

@@ -400,7 +400,7 @@ def test_count_char():
 
 test_count_char()
 
-def factorial(n: int) -> int:
+def factorial_forward(n: int) -> int:
   if n < 0:
     return -1
 
@@ -409,14 +409,31 @@ def factorial(n: int) -> int:
     res = res * e
   return res
 
+def factorial_backwards(n: int) -> int:
+  if n < 0:
+    return -1
+
+  res = 1
+  for e in range(n, 0, -1):
+    res = res * e
+  return res
+
 def test_factorial():
-  assert factorial(0) == 1
-  assert factorial(1) == 1
-  assert factorial(2) == 2
-  assert factorial(3) == 6
-  assert factorial(4) == 24
-  assert factorial(5) == 120
-  assert factorial(10) == 3628800
+  assert factorial_forward(0) == 1
+  assert factorial_forward(1) == 1
+  assert factorial_forward(2) == 2
+  assert factorial_forward(3) == 6
+  assert factorial_forward(4) == 24
+  assert factorial_forward(5) == 120
+  assert factorial_forward(10) == 3628800
+
+  assert factorial_backwards(0) == 1
+  assert factorial_backwards(1) == 1
+  assert factorial_backwards(2) == 2
+  assert factorial_backwards(3) == 6
+  assert factorial_backwards(4) == 24
+  assert factorial_backwards(5) == 120
+  assert factorial_backwards(10) == 3628800
   print("test_factorial ok")
 
 test_factorial()
@@ -598,11 +615,25 @@ test_matrix_sum()
 
 def is_matrix(mtx: list[list[float]]) -> bool:
   line_num = len(mtx)
+  if line_num == 0:
+    return True
+
   col_num = len(mtx[0])
   for i in range(1, line_num):
     if col_num != len(mtx[i]):
       return False
   return True
+
+def test_is_matrix():
+  assert is_matrix([])
+  assert is_matrix([[1]])
+  assert is_matrix([[1,2,3,4]])
+  assert not is_matrix([[1], [1,2]])
+  assert is_matrix([[1,2], [3,4]])
+  assert is_matrix([[1,3,5], [2,4,6]])
+  print("test_is_matrix ok")
+
+test_is_matrix()
 
 def transpose(mtx: list[list[float]]) -> list[list[float]]:
   assert is_matrix(mtx)
@@ -627,7 +658,7 @@ def test_transpose():
 
 test_transpose()
 
-def merge_sorted(l1, l2: list[float]) -> list[float]:
+def sorted_concat(l1, l2: list[float]) -> list[float]:
   assert is_sorted(l1) and is_sorted(l2)
   size1 = len(l1)
   size2 = len(l2)
@@ -643,14 +674,14 @@ def merge_sorted(l1, l2: list[float]) -> list[float]:
       i1 += 1
   return res
 
-def test_merge_sorted():
-  assert merge_sorted([1], [2]) == [1,2]
-  assert merge_sorted([1,3], [2]) == [1,2,3]
-  assert merge_sorted([1,2,3], [2,4]) == [1,2,2,3,4]
-  assert merge_sorted([0,2,4,5,6,7,10,12,13], [1,3,8,9,11]) == [0,1,2,3,4,5,6,7,8,9,10,11,12,13] 
-  print("test_merge_sorted ok")
+def test_sorted_concat():
+  assert sorted_concat([1], [2]) == [1,2]
+  assert sorted_concat([1,3], [2]) == [1,2,3]
+  assert sorted_concat([1,2,3], [2,4]) == [1,2,2,3,4]
+  assert sorted_concat([0,2,4,5,6,7,10,12,13], [1,3,8,9,11]) == [0,1,2,3,4,5,6,7,8,9,10,11,12,13] 
+  print("test_sorted_concat ok")
 
-test_merge_sorted()
+test_sorted_concat()
 
 def interactive_avg():
   is_on = True
@@ -727,3 +758,36 @@ def bank_account():
       print("Unknown operation!")
 
 #bank_account()
+
+def list_filter(l: list[float], n: float) -> list[float]:
+  res = []
+  for e in l:
+    if e >= n:
+      res.append(e)
+  return res
+
+def test_list_filter():
+  assert list_filter([], 0) == []
+  assert list_filter([2], 1) == [2]
+  assert list_filter([1], 2) == []
+  assert list_filter([1,2,3,4], 3) == [3,4]
+  assert list_filter([1,2,3,4], 5) == []
+  assert list_filter([1,2,3,4], 0) == [1,2,3,4]
+  print("test_list_filter ok")
+
+test_list_filter()
+
+def linear_search(l: list[float], n: float) -> list[float]:
+  for e in l:
+    if e == n:
+      return True
+  return False
+
+def test_linear_search():
+  assert linear_search([1,2,3], 2)
+  assert not linear_search([1,2,3], 4)
+  assert not linear_search([0,1,2,3,4,5,6,7,8,9], 10)
+  assert linear_search([0,1,2,3,4,5,6,7,8,9], 0)
+  print("test_linear_search ok")
+
+test_linear_search()
