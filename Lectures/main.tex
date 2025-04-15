@@ -314,6 +314,14 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Biblioteca Math}
+    O Python por si só oferece as operações referidas anteriormente, no entanto
+    existe uma biblioteca de Matemática que contém diversas constantes, como o 
+    pi ou o número de neper, para além de funções como o logaritmo, a raíz
+    quadrada (alternativa à potência de expoente $1/2$), entre outros.
+\end{frame}
+
+\begin{frame}
     \frametitle{Atribuição a variáveis}
 \end{frame}
 
@@ -392,21 +400,31 @@
 \end{frame}
 
 \begin{frame}[containsverbatim]
-    \frametitle{Condições}
-    
+    \frametitle{Exercício}
+    Escreva um função em Python que dado uma nota de $0$ a $100$ imprime na 
+    consola se é positiva ou negativa:
+    \vspace{4mm}
     \begin{pythonlst}
-        import math
-
-        def dist(x1, y1, x2, y2: float) -> float:
-            """ Calcula a distancia eucliadiana entre dois pontos
-                x1, y1 - Coordenadas do ponto 1
-                x2, y2 - Coordenadas do ponto 2
-                Retorna a distancia como numero real """
-            return math.sqrt((3 - 7)**2 + (4 - 1)**2)
-        
-        print(dist(3, 4, 7, 1))
-        print(dist(0, 0, 0, 1))
+        def is_positive_grade(n: int) -> str:
+            if round(n) >= 50:
+                print("Teve positiva")
+            else:
+                print("Teve negativa") 
     \end{pythonlst}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Condicionais}
+    Em Python é possível expressar alternativas através das keywords $if$, $elif$
+    e $else$. Um bloco condional representa um conjunto de alternativas associadas
+    entre si. Cada bloco começa obrigatoriamente com um único $if$, no entanto
+    é possível omitir tudo o resto (isto representa não fazer nada se a condição
+    original for falsa). Cada bloco condional pode ter $0$ ou mais $elif$'s, 
+    consoante o número de casos que queiramos distinguir. Já o $else$ representa 
+    o caso em que todas as outras condições verificadas anteriormente são falsas,
+    ou seja, por bloco condional apenas pode existir no máximo um $else$ e deverá
+    ser a última expressão desse bloco condional, pois engloba todos os restantes
+    casos.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -425,6 +443,7 @@
         \item Questionar sobre o que pode estar a faltar
         \item Introduzir ajudas de tipo e comentários
         \item Se calhar meter um exemplo super complexo sem comentários e ajudas de tipo
+        \item FALAR SOBRE IDENTAÇÃO E CORPO DAS FUNÇÕES
     \end{itemize}
 \end{frame}
 
