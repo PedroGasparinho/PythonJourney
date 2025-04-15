@@ -69,7 +69,7 @@
 \makeatother
 
 %Information to be included in the title page:
-\title{Introdução ao Python}
+\title{Introduction to Python}
 \subtitle{Python Journey}
 \author{Pedro Gasparinho}
 %\institute{NOVA School of Science and Technology}
@@ -124,19 +124,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[containsverbatim]
-    \frametitle{Primeiro Programa}
+    \frametitle{First Program}
     \begin{pythonlst}
         print('Hello World!')
     \end{pythonlst}
     \bb
     \begin{itemize}
-        \item \textit{print} - Função
-        \item \textit{'Hello World!'} - Valor do tipo string
+        \item \textit{print} - Function
+        \item \textit{'Hello World!'} - Value of type string
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Conjuntos Numéricos}
+    \frametitle{Number Sets}
     \begin{minipage}[c]{0.48\linewidth}
         \centering
         \includegraphics[width=\textwidth]{../Images/RealSet_w1000.png}
@@ -144,101 +144,100 @@
     \hfill
     \begin{minipage}[c]{0.48\linewidth}
         \begin{itemize}
-            \item Existe a necessidade de agrupar números com dadas
-                características em conjuntos diferentes.
-            \item Estes conjuntos são normalmente construídos de forma 
-                incremental.
-            \item No entanto, quando necessário é possível restringir o conjunto 
-                ou subconjunto a usar.
+            \item There is a need to group numbers with certain characteristics
+                in different sets.
+            \item These sets are usually built on top of each other.
+            \item Although, it is possible to restrict which set or subset will
+                be used to fit our needs.
         \end{itemize}
 
     \end{minipage}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Tipos de dados em Python}
+    \frametitle{Data Types in Python}
     \begin{itemize}
-        \item Similarmente à Matemática, em Python e noutras linguagens de
-            Programação, existem conjuntos de valores, denominados tipos de dados.
-        \item No entanto, estes não se limitam apenas a números, existem também 
-            formas de representar texto, verdadeiros ou falsos, entre outros.
-        \item Um valor pode ter diferentes representações, mas cada representação
-            apenas está associada a um tipo de dados. Por exemplo, $1$ é um valor
-            inteiro, enquanto $1.0$ é considerado como um número real (float).
+        \item Similar to Maths, Python and other programming languages have sets
+            of values, known as data types.
+        \item However, these sets are not limited to numbers, it is also possible
+            to represent text, true and false, and more.
+        \item A value can have multiple representations, but each representation 
+            is only associated with a single data type. For instance, $1$ is an
+            integer value, while $1.0$ is considered as a real number (float).  
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Tipos de dados em Python}
+    \frametitle{Data Types in Python}
     \begin{itemize}
-        \item Números Inteiros (Integers)
+        \item Integers
             \begin{itemize}
-                \item Denominado \textit{int}
-                \item Exemplos: \textit{1}, \textit{-4}, \textit{0}
+                \item Represented as \textit{int}
+                \item Examples: \textit{1}, \textit{-4}, \textit{0}
             \end{itemize}
-        \item Números Reais (Floats)
+        \item Real Numbers (Floats)
             \begin{itemize}
-                \item Denominado \textit{float}
-                \item Exemplos: \textit{1.0}, \textit{-6.2}, \textit{3.1415926}
+                \item Represented as \textit{float}
+                \item Examples: \textit{1.0}, \textit{-6.2}, \textit{3.1415926}
             \end{itemize}
-        \item Valores lógicos (Booleans)
+        \item Logical Values (Booleans)
         \begin{itemize}
-            \item Denominado \textit{bool}
-            \item Exemplos: \textit{True}, \textit{False}
+            \item Represented as \textit{bool}
+            \item Exemples: \textit{True}, \textit{False}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Tipos de dados em Python}
+    \frametitle{Data Types in Python}
     \begin{itemize}
-        \item Texto (Strings)
+        \item Text (Strings)
         \begin{itemize}
-            \item Denominado \textit{str}
-            \item Exemplos: \textit{'1'}, \textit{"Hello, world"}, \textit{"""Olá"""}
+            \item Represented as \textit{str}
+            \item Exemples: \textit{'1'}, \textit{"Hello, world"}, \textit{"""Olá"""}
         \end{itemize}
-    \item Listas
+    \item Lists
         \begin{itemize}
-            \item Denominado \textit{list}
-            \item Exemplos: \textit{[1, 2, 3]}, \textit{[]}, \textit{["Olá", "Olé"]}, \textit{["Olá", 1, ["ok"], true]}
+            \item Represented as \textit{list}
+            \item Exemples: \textit{[1, 2, 3]}, \textit{[]}, \textit{["Olá", "Olé"]}, \textit{["Olá", 1, ["ok"], true]}
         \end{itemize}
-    \item Entre outros...
+    \item And much more...
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Algumas notas sobre Floats}
+    \frametitle{Some notes about Floats}
     \begin{itemize}
-        \item Não é possível representar fidedignamente todos os números 
-        reais, como por exemplo, os números com dízimas infinitas, já que os 
-        computadores têm espaço de armazenamento finito.
-        \item Outro exemplo clássico é somar \textit{0.1} com \textit{0.2}, que 
-        resulta em \textit{0.30000000000000004}.
-        \item Isto deve-se à norma IEEE 754, usada para representar números reais,
-        mas que não será discutida nestes materiais.
+        \item Computers are not able to fully represent real numbers, for 
+        instance, numbers with infinite decimal places, since computers have
+        finite storage space to store data.
+        \item Another classical example is the sum of \textit{0.1} with 
+        \textit{0.2}, which results in \textit{0.30000000000000004}.
+        \item This occurs due the to technical standard IEEE 754, used to
+        represent real numbers, but will not be discussed in these materials.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Algumas notas sobre Strings}
+    \frametitle{Some notes about Strings}
     \begin{itemize}
-        \item São obrigatoriamente delimitadas ou por apóstrofes (\textit{'...'}) 
-            ou por aspas (\textit{"..."}).
-        \item Escolher as aspas como delimitador permite utilizar os apóstrofes
-            dentro do conteúdo da string e vice-versa.
-        \item Para além disso, é possível usar o mesmo delimitador 3 vezes 
-            seguidas para permitir que a string tenha múltiplas linhas. O que
-            geralmente é utilizado para comentários. 
+        \item Must be delimited with either apostrophes (\textit{'...'}) or 
+        quotation marks (\textit{"..."}). 
+        \item Choosing apostrophes as a delimiter allows the use of quotation
+        marks inside the string, and vice versa.
+        \item Moreover, it is possible to repeat the same delimiter 3 times in
+        sequence to allow strings to span multiple lines. This is commonly used
+        in comments.
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Algumas notas sobre Listas}
+    \frametitle{Some notes about Lists}
     \begin{itemize}
-        \item As listas servem para guardar múltiplos valores de forma ordenada
-        e que permite repetições
-        \item Em Python, ao contrário de muitas outras linguagens, as listas 
-        podem conter valores com diferentes tipos de dados.
+        \item The purpose of lists is to store multiple values in a specific
+        order and allows for repetitions.
+        \item In Python, unlike many other programming languages, lists can
+        values of different data types.
     \end{itemize}
 \end{frame}
 
@@ -250,75 +249,76 @@
 %\end{frame}
 
 \begin{frame}
-    \frametitle{Expressões aritméticas}
-        Um dos usos mais simples das linguagens de programação é como
-        calculadora, através dos seguintes operadores aritméticos básicos: 
+    \frametitle{Arithmetic expressions}
+        One of the most simple uses of programming languages is as calculator,
+        through the use of basic arithmetic operators:
         \begin{itemize}
-            \item $+$ representa a soma. Ex:
+            \item $+$ represents sum. Ex:
             \begin{itemize}
-                \item $2+2$, que é igual a $4$
-                \item $-1.2+3.6$, que é igual a $2.4$
+                \item $2+2$, is equal to $4$
+                \item $-1.2+3.6$, is equal to $2.4$
             \end{itemize}
-            \item $-$ representa a subtração. Ex:
+            \item $-$ represents subtraction. Ex:
             \begin{itemize}
-                \item $3-1$, que é igual a $2$
-                \item $5.3-1.8$, que é igual a $3.5$
+                \item $3-1$, is equal to $2$
+                \item $5.3-1.8$, is equal to $3.5$
             \end{itemize}
-            \item $*$ representa a multiplicação. Ex:
+            \item $*$ represents multiplication. Ex:
             \begin{itemize}
-                \item $5*2$, que é igual a $10$
-                \item $2.9*3$, que é igual a $8.7$
+                \item $5*2$, is equal to $10$
+                \item $2.9*3$, is equal to $8.7$
             \end{itemize}
         \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Expressões aritméticas}
+    \frametitle{Arithmetic expressions}
         \begin{itemize}
-            \item $/$ representa a divisão real. Ex:
+            \item $/$ represents real division. Ex:
             \begin{itemize}
-                \item $4/2$, que é igual a $2.0$
-                \item $5.4/0.25$, que é igual a $21.6$
+                \item $4/2$, is equal to $2.0$
+                \item $5.4/0.25$, is equal to $21.6$
             \end{itemize}
-            \item $//$ representa a divisão inteira. Ex:
+            \item $//$ represents integer division. Ex:
             \begin{itemize}
-                \item $4//2$, que é igual a $2$
-                \item $5//2$, que é igual a $2$
+                \item $4//2$, is equal to $2$
+                \item $5//2$, is equal to $2$
             \end{itemize}
-            \item $\%$ representa o resto da divisão inteira. Ex:
+            \item $\%$ represents integer division remainder. Ex:
             \begin{itemize}
-                \item $4//2$, que é igual a $0$
-                \item $5//2$, que é igual a $1$
+                \item $4//2$, is equal to $0$
+                \item $5//2$, is equal to $1$
             \end{itemize}
-            \item $**$ representa a potência. Ex:
+            \item $**$ represents exponentiation. Ex:
             \begin{itemize}
-                \item $2**4$, que é igual a $16$
-                \item $9**0.5$, que é igual a $3.0$
+                \item $2**4$, is equal to $16$
+                \item $9**0.5$, is equal to $3.0$
             \end{itemize}
         \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Notas sobre expressões aritméticas}
+    \frametitle{Notes about Arithmetic expressions}
         \begin{itemize}
-            \item Tal como na Matemática, a divisão por $0$ não está definida em
-                Python e caso seja efetuada irá produzir um \textbf{erro}.
-            \item A divisão real produz obrigatoriamente um valor do tipo \textbf{float}
-            \item Tanto o resto como a divisão inteira produzem valores do tipo
-            \textbf{int}
-            \item O tipo de dados do resultado da potência \textbf{depende} do 
-            tipo de dados da base e do exponente, se pelo menos um deles for 
-            float o resultado será float, se ambos forem inteiros será inteiro.
-    
+            \item Similar to Maths, division by $0$ is not defined in Python,
+            and if performed it will produce an \textbf{error}.
+            \item Real division always produces a value of the \textbf{float} type.
+            \item Both the integer division and its remainder always produce
+            values of the \textbf{integer} type.
+            \item The data type of the result of the exponentiation operation
+            depends on its operands, these being the base and exponent. If at
+            least one is float then the result will be float, if both are integers
+            it will be integer.
         \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Biblioteca Math}
-    O Python por si só oferece as operações referidas anteriormente, no entanto
-    existe uma biblioteca de Matemática que contém diversas constantes, como o 
-    pi ou o número de neper, para além de funções como o logaritmo, a raíz
-    quadrada (alternativa à potência de expoente $1/2$), entre outros.
+    \frametitle{Math Library}
+    Python by itself offers the previously mentioned operations, but many more
+    mathematical operations and constants can be accessed through the Math
+    library, for instance pi, neper number, the logarithm function, the square 
+    root (alternatively to the exponentiation with exponent $1/2$), and much
+    more.
 \end{frame}
 
 %\begin{frame}
@@ -326,14 +326,14 @@
 %\end{frame}
 
 \begin{frame}[containsverbatim]
-    \frametitle{Exercício}
-    Escreva um programa em Python que calcule a distância eucliadiana entre 
-    os pontos (3, 4) e (7, 1). A fórmula para dois pontos ($x_1$, $y_1$)
-    e ($x_2$, $y_2$) é:
+    \frametitle{Exercise}
+    Write a program in Python that calculates the Euclidean distance between
+    points (3, 4) e (7, 1). The formula for points ($x_1$, $y_1$) and ($x_2$, $y_2$)
+    is:
     \vspace{2mm}
     \[ d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \]
     \vspace{4mm}
-    Talvez a solução mais intuitiva seja:
+    Maybe the most intuitive solution is:
     \begin{pythonlst}
         import math
 
@@ -342,25 +342,25 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Repetição de código}
-    E se nos pedirem para calcular a distância entre outros dois pontos?
-    Simples, fazer copy paste!\\
+    \frametitle{Code Repetition}
+    What if the exercise also asked us to calculate the distance between two
+    other points? Easy, just copy and paste!
     \vspace{4mm}
-    No entanto, isto introduz alguns problemas:
+    However, this introduces a few problems:
     \begin{itemize}
-        \item A fórmula da distância é relativamente simples, mas copiar pedaços 
-            de código mais complexos e com múltiplas linhas torna o código 
-            difícil de ler.
-        \item Se detetarmos um erro numa fórmula seria necessário substituir em 
-            vários locais, o que não é desejável, e inclusivamente ficar a faltar
-            em algum sítio.
+        \item The formula of the Euclidean distance is relatively simple, however
+        copying complex code excerpts with multiple lines can make the code hard
+        to read.
+        \item If we detect an error in the formula, then it would be necessary
+        to correct it in multiple places, with the cost of possibly forgetting
+        to change in some place.
     \end{itemize}
-    Qual será a melhor solução?
+    What is the best solution?
 \end{frame}
 
 \begin{frame}[containsverbatim]
-    \frametitle{Funções}
-    Uma solução mais adequada seria:
+    \frametitle{Functions}
+    A more adequate solution would be:
     \begin{pythonlst}
         import math
 
@@ -373,16 +373,16 @@
 \end{frame}
 
 \begin{frame}[containsverbatim]
-    \frametitle{Funções}
-    No entanto, a melhor solução seria:
+    \frametitle{Functions}
+    However, the best solution would be:
     \begin{pythonlst}
         import math
 
         def dist(x1, y1, x2, y2: float) -> float:
-            """ Calcula a distancia eucliadiana entre dois pontos
-                x1, y1 - Coordenadas do ponto 1
-                x2, y2 - Coordenadas do ponto 2
-                Retorna a distancia como numero real """
+            """ Calculates the Euclidean distance between two points
+                x1, y1 - Coordinates of point 1
+                x2, y2 - Coordinates of point 2
+                Returns the distance as a real number """
             return math.sqrt((3 - 7)**2 + (4 - 1)**2)
         
         print(dist(3, 4, 7, 1))
@@ -391,16 +391,15 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Funções}
+    \frametitle{Functions}
     \begin{itemize}
-        \item A ordem dos parâmetros importa (Existem truques para que a ordem 
-        não interesse, mas não serão apresentados aqui)
-        \item Com algumas exceções, os nomes não interessam, mas por boa prática 
-        deve ser algo alusivo ao comportamento esperado
-        \item Porque devemos usar funções? Seria necessário ter um botão numa
-        calculadora que dê especificamente o resultado de $ln(1+5/2)$? Em vez
-        disso, o que é realmente necessário são os números, a soma, a divisão,
-        a função de logaritmo, etc.
+        \item The order of the parameters matters (Although there are techniques
+        that contradict this, but will not be presented here)
+        \item With a few exceptions names do not matter, but for good practice
+        should be related to the expected behaviour.
+        \item Why use functions? Would you need a button in a calculator that 
+        specifically calculates $ln(1+5/2)$? Instead, you need buttons for 
+        the numbers, the sum, the division, the logarithm function, etc.
     \end{itemize}
 \end{frame}
 
