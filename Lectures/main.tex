@@ -161,7 +161,7 @@
         \item Similarmente à Matemática, em Python e noutras linguagens de
             Programação, existem conjuntos de valores, denominados tipos de dados.
         \item No entanto, estes não se limitam apenas a números, existem também 
-            formas de representar texto, verdadeiros, falsos, entre outros.
+            formas de representar texto, verdadeiros ou falsos, entre outros.
         \item Um valor pode ter diferentes representações, mas cada representação
             apenas está associada a um tipo de dados. Por exemplo, 1 é um valor
             inteiro, enquanto 1.0 é considerado real.
@@ -235,7 +235,10 @@
 \begin{frame}
     \frametitle{Algumas notas sobre Listas}
     \begin{itemize}
-        \item Podem conter valores de diferentes tipos.
+        \item As listas servem para guardar múltiplos valores de forma ordenada
+        e que permite repetições
+        \item Em Python, ao contrário de outras linguagens, as listas podem 
+            conter valores com diferentes tipos de dados.
     \end{itemize}
 \end{frame}
 
@@ -248,9 +251,70 @@
 
 \begin{frame}
     \frametitle{Expressões aritméticas}
-    \begin{itemize}
-        \item OK
-    \end{itemize}
+        Um dos usos mais simples das linguagens de Programação é como
+        calculadora, através dos seguintes operadores aritméticos básicos: 
+        \begin{itemize}
+            \item $+$ representa a soma. Ex:
+            \begin{itemize}
+                \item $2+2$, que é igual a $4$
+                \item $-1.2+3.6$, que é igual a $2.4$
+            \end{itemize}
+            \item $-$ representa a subtração. Ex:
+            \begin{itemize}
+                \item $3-1$, que é igual a $2$
+                \item $5.3-1.8$, que é igual a $3.5$
+            \end{itemize}
+            \item $*$ representa a multiplicação. Ex:
+            \begin{itemize}
+                \item $5*2$, que é igual a $10$
+                \item $2.9*3$, que é igual a $8.7$
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Expressões aritméticas}
+        \begin{itemize}
+            \item $/$ representa a divisão real. Ex:
+            \begin{itemize}
+                \item $4/2$, que é igual a $2.0$
+                \item $5.4/0.25$, que é igual a $21.6$
+            \end{itemize}
+            \item $//$ representa a divisão inteira. Ex:
+            \begin{itemize}
+                \item $4//2$, que é igual a $2$
+                \item $5//2$, que é igual a $2$
+            \end{itemize}
+            \item $\%$ representa o resto da divisão inteira. Ex:
+            \begin{itemize}
+                \item $4//2$, que é igual a $0$
+                \item $5//2$, que é igual a $1$
+            \end{itemize}
+            \item $**$ representa a potência. Ex:
+            \begin{itemize}
+                \item $2**4$, que é igual a $16$
+                \item $9**0.5$, que é igual a $3.0$
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notas sobre expressões aritméticas}
+        \begin{itemize}
+            \item Tal como na Matemática, a divisão por $0$ não está definida em
+                Python e caso seja efetuada irá produzir um \textbf{erro}.
+            \item A divisão real produz obrigatoriamente um valor do tipo \textbf{float}
+            \item Tanto o resto como a divisão inteira produzem valores do tipo
+            \textbf{int}
+            \item O tipo de dados do resultado da potência \textbf{depende} do 
+            tipo de dados da base e do exponente, se pelo menos um deles for 
+            float o resultado será float, se ambos forem inteiros será inteiro.
+    
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Atribuição a variáveis}
 \end{frame}
 
 \begin{frame}[containsverbatim]
