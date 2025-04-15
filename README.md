@@ -1,4 +1,4 @@
-# PythonJourney
+# Python Journey
 An introductory course for Python
 
 Last Update: \
@@ -8,6 +8,5 @@ Last Update: \
 
 | Type | En | PT |
 | ---- | -- | -- |
-| Lecture | TODO | [Aula 1](Lectures/main.pdf)
-| Exercises | [Exercises](Labs/main-no-solutions.pdf) | TODO |
-| Solutions | [Exercises](Labs/main.pdf) | TODO |
+| Lecture 1 | TODO | [Aula](Lectures/main.pdf)
+| Lab 1 | [Exercises](Labs/main-no-solutions.pdf) <br> [Solutions](Labs/main.pdf) | TODO
